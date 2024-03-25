@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+
+import '../../models/media_model.dart';
+import '../../utils/urls.dart';
+import '../screens/details_screen/content_cheacker.dart';
+import 'ratting_widget.dart';
+
+class ImageSliderItem extends StatelessWidget {
+  const ImageSliderItem({
+    super.key,
+    required this.item,
+    required this.trandingAt,
+  });
+
+  final MediaModel item;
+  final int trandingAt;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => onTap(context),
+      child: Container(
+        alignment: Alignment.bottomRight,
+        padding: const EdgeInsets.all(8.0),
+        decoration: imageDecorationSection(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              "# ${trandingAt + 1}",
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    color: Colors.orange,
+                    fontWeight: FontWeight.w700,
+                  ),
+            ),
+            RattingWidget(ratting: item.voteAverage ?? 0,),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void onTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ContentChecker(
+          contentType: item.mediaType ?? "none",
+          contentId: item.id ?? 1,
+        ),
+      ),
+    );
+  }
+
+  BoxDecoration imageDecorationSection() {
+    return BoxDecoration(
+      image: DecorationImage(
+        image: NetworkImage(item.posterPath != null
+            ? Urls.getImageUrl(item.posterPath!)
+            : Urls.noPosterUrl),
+        fit: BoxFit.fill,
+        colorFilter: const ColorFilter.mode(
+          Colors.black45,
+          BlendMode.darken,
+        ),
+      ),
+    );
+  }
+
+}
