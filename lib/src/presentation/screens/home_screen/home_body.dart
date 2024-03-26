@@ -21,7 +21,7 @@ class _HomeBodyState extends State<HomeBody> with TickerProviderStateMixin {
     fontFamily: 'open sans',
     decoration: TextDecoration.none,
     color: Colors.white.withOpacity(1),
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: FontWeight.w500,
     letterSpacing: 1,
   );
@@ -43,14 +43,18 @@ class _HomeBodyState extends State<HomeBody> with TickerProviderStateMixin {
     return SliverList(
       delegate: SliverChildListDelegate([
         tabBar(),
-        TabBarView(
-          controller: _tabController,
-          children: const [
-            SeriseTab(),
-            MovieTab(),
-            UpcomingTab(),
-            PersonTab(),
-          ],
+        SizedBox(
+          height: 1110,
+          width: MediaQuery.of(context).size.width,
+          child: TabBarView(
+            controller: _tabController,
+            children: const [
+              SeriseTab(),
+              MovieTab(),
+              UpcomingTab(),
+              PersonTab(),
+            ],
+          ),
         ),
       ]),
     );

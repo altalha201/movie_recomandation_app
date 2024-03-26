@@ -3,6 +3,7 @@ import 'package:provider/single_child_widget.dart';
 
 import '../controllers/date_frame_selactor_controller.dart';
 import '../controllers/search_function_controller.dart';
+import '../controllers/serise_room_controller.dart';
 import '../controllers/tranding_controllers.dart';
 
 class Providers {
@@ -15,6 +16,9 @@ class Providers {
         ),
         ChangeNotifierProvider<SearchFunctionController>(
           create: (_) => SearchFunctionController(),
+        ),
+        ChangeNotifierProvider<SeriseRoomController>(
+          create: (_) => SeriseRoomController(),
         ),
       ];
 }
