@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../models/media_model.dart';
-import '../../utils/urls.dart';
-import '../screens/details_screen/content_cheacker.dart';
-import 'popularity_widget.dart';
-import 'ratting_widget.dart';
-import 'tag_widget.dart';
+import '../../../models/media_model.dart';
+import '../../../utils/navigation_helper.dart';
+import '../../../utils/urls.dart';
+import '../../screens/details_screen/content_cheacker.dart';
+import '../cards/popularity_widget.dart';
+import '../cards/ratting_widget.dart';
+import '../tags/tag_widget.dart';
 
-class SearchListWidget extends StatelessWidget {
-  const SearchListWidget({
+class SearchListItem extends StatelessWidget {
+  const SearchListItem({
     super.key,
     required this.item,
   });
@@ -16,12 +17,11 @@ class SearchListWidget extends StatelessWidget {
   final MediaModel item;
 
   void goToDetails(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => ContentChecker(
-          contentType: item.mediaType ?? "",
-          contentId: item.id ?? 0,
-        ),
+    NavigationHelper.push(
+      context,
+      ContentChecker(
+        contentType: item.mediaType ?? "",
+        contentId: item.id ?? -1,
       ),
     );
   }
@@ -71,7 +71,7 @@ class SearchListWidget extends StatelessWidget {
             TagWidget(
               text: item.mediaType?.toUpperCase() ?? "Unknown",
             ),
-            RattingWidget(ratting: item.voteAverage ?? 0),
+            RattingWidget(item.voteAverage ?? 0),
             PopularityWidget(ratting: item.popularity ?? 0),
           ],
         ),

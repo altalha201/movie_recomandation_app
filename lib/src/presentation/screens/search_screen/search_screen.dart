@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../controllers/search_function_controller.dart';
 import '../../../utils/app_colors.dart';
 import '../../widgets/app_progress_indicator.dart';
-import '../../widgets/search_list_widget.dart';
+import '../../widgets/list_item/search_list_item.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -91,7 +91,7 @@ class _SearchScreenState extends State<SearchScreen> {
         itemCount: controller.searchList.length,
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) => SearchListWidget(
+        itemBuilder: (context, index) => SearchListItem(
           item: controller.searchList[index],
         ),
       ),

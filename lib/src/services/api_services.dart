@@ -21,13 +21,11 @@ class ApiServices {
       if (params != null) {
         _perams.addAll(params);
       }
-      log(Uri.parse(url).replace(queryParameters: _perams).toString());
       final res = await http.get(
         Uri.parse(url).replace(queryParameters: _perams),
         headers: _header,
       );
       if (res.statusCode == 200) {
-        // log(json.decode(res.body));
         return ResponseModel(
           statusCode: 200,
           success: true,

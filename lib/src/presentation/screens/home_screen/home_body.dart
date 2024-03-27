@@ -1,105 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'tabs/movie_tab.dart';
-import 'tabs/person_tab.dart';
-import 'tabs/serise_tab.dart';
-import 'tabs/upcoming_tab.dart';
+import '../../../controllers/serise_room_controller.dart';
+import '../../widgets/title_widget.dart';
+import 'lists/serise_list_view.dart';
 
-class HomeBody extends StatefulWidget {
+class HomeBody extends StatelessWidget {
   const HomeBody({
     super.key,
   });
 
   @override
-  State<HomeBody> createState() => _HomeBodyState();
-}
-
-class _HomeBodyState extends State<HomeBody> with TickerProviderStateMixin {
-  late final TabController _tabController;
-
-  final TextStyle tabTextStyle = TextStyle(
-    fontFamily: 'open sans',
-    decoration: TextDecoration.none,
-    color: Colors.white.withOpacity(1),
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
-    letterSpacing: 1,
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 4, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _tabController.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SliverList(
-      delegate: SliverChildListDelegate([
-        tabBar(),
-        SizedBox(
-          height: 1110,
-          width: MediaQuery.of(context).size.width,
-          child: TabBarView(
-            controller: _tabController,
-            children: const [
-              SeriseTab(),
-              MovieTab(),
-              UpcomingTab(),
-              PersonTab(),
-            ],
-          ),
-        ),
-      ]),
+      delegate: SliverChildListDelegate(widgets),
     );
   }
 
-  Widget tabBar() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: SizedBox(
-        height: 45,
-        width: MediaQuery.of(context).size.width,
-        child: TabBar(
-          controller: _tabController,
-          isScrollable: true,
-          physics: const BouncingScrollPhysics(),
-          labelPadding: const EdgeInsets.symmetric(horizontal: 12),
-          indicator: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.orange,
-          ),
-          dividerHeight: 0,
-          padding: EdgeInsets.zero,
-          tabs: [
-            tabs("Serise"),
-            tabs("Movie"),
-            tabs("Upcoming"),
-            tabs("Person"),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Tab tabs(String text) {
-    return Tab(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12.0,
-          vertical: 2.0,
-        ),
-        child: Text(
-          text,
-          style: tabTextStyle,
-        ),
-      ),
-    );
+  List<Widget> get widgets {
+    return [
+      const SizedBox(height: 4.0),
+      const TitleWidget("On Air Serises"),
+      Consumer<SeriseRoomController>(builder: (context, controller, _) {
+        return SeriseListView(serises: controller.onAirSerise);
+      }),
+      const TitleWidget("Top Rated Serises"),
+      Consumer<SeriseRoomController>(builder: (context, controller, _) {
+        return SeriseListView(serises: controller.topSerise);
+      }),
+      const SizedBox(height: 8.0),
+    ];
   }
 }

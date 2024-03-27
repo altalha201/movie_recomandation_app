@@ -4,9 +4,11 @@ import 'package:provider/provider.dart';
 
 import '../../../controllers/tranding_controllers.dart';
 import '../../../utils/app_colors.dart';
+import '../../../utils/navigation_helper.dart';
 import '../../widgets/app_progress_indicator.dart';
 import '../../widgets/home_screen_title_widget.dart';
 import '../../widgets/image_slider_item.dart';
+import '../account_screen/account_screen.dart';
 import '../search_screen/search_screen.dart';
 
 class HomeAppBarSaction extends StatelessWidget {
@@ -14,13 +16,17 @@ class HomeAppBarSaction extends StatelessWidget {
     super.key,
   });
 
-  void onMenuTap() {}
+  void onAccountTap(BuildContext context) {
+    NavigationHelper.push(
+      context,
+      const AccountScreen(),
+    );
+  }
 
   void onSearchTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const SearchScreen(),
-      ),
+    NavigationHelper.push(
+      context,
+      const SearchScreen(),
     );
   }
 
@@ -35,8 +41,8 @@ class HomeAppBarSaction extends StatelessWidget {
       title: const HomeScreenTitleWidget(),
       flexibleSpace: backgroundSection(),
       leading: IconButton(
-        icon: const Icon(Icons.menu),
-        onPressed: () => onMenuTap,
+        icon: const Icon(Icons.person),
+        onPressed: () => onAccountTap(context),
       ),
       actions: [
         IconButton(

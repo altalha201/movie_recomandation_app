@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../models/media_model.dart';
+import '../../utils/navigation_helper.dart';
 import '../../utils/urls.dart';
 import '../screens/details_screen/content_cheacker.dart';
-import 'ratting_widget.dart';
+import 'cards/ratting_widget.dart';
 
 class ImageSliderItem extends StatelessWidget {
   const ImageSliderItem({
@@ -34,7 +35,9 @@ class ImageSliderItem extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
             ),
-            RattingWidget(ratting: item.voteAverage ?? 0,),
+            RattingWidget(
+              item.voteAverage ?? 0,
+            ),
           ],
         ),
       ),
@@ -42,12 +45,11 @@ class ImageSliderItem extends StatelessWidget {
   }
 
   void onTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => ContentChecker(
-          contentType: item.mediaType ?? "none",
-          contentId: item.id ?? 1,
-        ),
+    NavigationHelper.push(
+      context,
+      ContentChecker(
+        contentType: item.mediaType ?? "none",
+        contentId: item.id ?? -1,
       ),
     );
   }
@@ -66,5 +68,4 @@ class ImageSliderItem extends StatelessWidget {
       ),
     );
   }
-
 }

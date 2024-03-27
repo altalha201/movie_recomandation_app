@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_recomandation_app/src/controllers/serise_room_controller.dart';
-import 'package:provider/provider.dart';
 
-import '../../../controllers/tranding_controllers.dart';
-import '../../../utils/app_colors.dart';
+import '../../../utils/navigation_helper.dart';
+import '../../../utils/providers.dart';
 import '../../widgets/app_progress_indicator.dart';
 import '../home_screen/home_screen.dart';
 
@@ -19,16 +17,12 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     WidgetsFlutterBinding.ensureInitialized()
         .addPostFrameCallback((timeStamp) async {
-      Future.wait([
-        Provider.of<SeriseRoomController>(context, listen: false).getTabInfo(),
-        Provider.of<TrandingController>(context, listen: false).getTrandings()
-      ]).then(
+      await Future.wait(Providers.onLoadUp(context)).then(
         (value) {
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
-              ),
-              (route) => false);
+          NavigationHelper.pushAndRemoveUntil(
+            context,
+            const HomeScreen(),
+          );
         },
       );
     });
@@ -38,7 +32,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: AppColors.appbarBackground,
       body: AppProgressIndicator(),
     );
   }

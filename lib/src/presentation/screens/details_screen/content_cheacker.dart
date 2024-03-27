@@ -35,6 +35,9 @@ class _ContentCheckerState extends State<ContentChecker> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.contentId == -1) {
+      return errorScreen();
+    }
     return viewReturner();
   }
 
@@ -59,7 +62,7 @@ class _ContentCheckerState extends State<ContentChecker> {
                   ),
                   const SizedBox(width: 12),
                   Text(
-                    "Bad Request 400",
+                    "Bad Request 400\nItem not found",
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ],

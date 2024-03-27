@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RattingWidget extends StatelessWidget {
-  const RattingWidget({
+  const RattingWidget(
+    this.ratting, {
     super.key,
-    required this.ratting,
     this.backgroundOpacity = 0.3,
     this.backgroundColor = Colors.orange,
   });

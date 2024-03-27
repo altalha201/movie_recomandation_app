@@ -5,10 +5,9 @@ class PersonTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      children: const [
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
         Padding(
           padding: EdgeInsets.all(24),
           child: Text("Person Tab"),
