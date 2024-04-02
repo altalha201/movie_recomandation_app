@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/movie_model.dart';
 import '../../../../utils/constants.dart';
-import '../../../widgets/button/see_more_button.dart';
-import '../../../widgets/list_item/movie_list_item.dart';
+import '../../../../utils/urls.dart';
+import '../../../widgets/list_item/list_poster_item.dart';
 
 class MovieListView extends StatelessWidget {
   const MovieListView({
@@ -25,17 +25,15 @@ class MovieListView extends StatelessWidget {
           padding: EdgeInsets.zero,
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          itemCount: movies.length + 1,
-          itemBuilder: (context, index) {
-            if (index < movies.length) {
-              return MovieListItem(
-                item: movies.elementAt(index),
-              );
-            }
-            return SeeMoreButton(
-              onTap: onSeeMore,
-            );
-          },
+          itemCount: movies.length,
+          itemBuilder: (context, index) => ListPosterItem(
+            imageUrl: movies[index].posterPath != null
+                ? Urls.getImageUrl(movies[index].posterPath!)
+                : Urls.noPosterUrl,
+            mediaType: "movie",
+            id: movies[index].id ?? -1,
+            ratting: movies[index].voteAverage ?? 0,
+          ),
         ),
       ),
     );

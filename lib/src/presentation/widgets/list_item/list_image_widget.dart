@@ -9,12 +9,17 @@ class ListImageWidget extends StatelessWidget {
     this.border = false,
     this.borderColor,
     this.onPressed,
+    this.childAlignment,
+    this.child, this.padding,
   });
 
   final String imagePath;
   final bool border;
   final Color? borderColor;
   final VoidCallback? onPressed;
+  final Alignment? childAlignment;
+  final EdgeInsetsGeometry? padding;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,7 @@ class ListImageWidget extends StatelessWidget {
         height: Constances.listItemHeight,
         width: Constances.listItemWeight,
         margin: Constances.listItemMargin,
+        padding: padding,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border:
@@ -33,6 +39,8 @@ class ListImageWidget extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
+        alignment: childAlignment,
+        child: child,
       ),
     );
   }

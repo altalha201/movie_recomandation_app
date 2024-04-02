@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/serise_model.dart';
 import '../../../../utils/constants.dart';
-import '../../../widgets/button/see_more_button.dart';
-import '../../../widgets/list_item/serise_list_item.dart';
+import '../../../../utils/urls.dart';
+import '../../../widgets/list_item/list_poster_item.dart';
 
 class SeriseListView extends StatelessWidget {
   const SeriseListView({
@@ -25,15 +25,15 @@ class SeriseListView extends StatelessWidget {
           padding: EdgeInsets.zero,
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          itemCount: serises.length + 1,
-          itemBuilder: (context, index) {
-            if (index < serises.length) {
-              return SeriseListItem(item: serises.elementAt(index));
-            }
-            return SeeMoreButton(
-              onTap: onSeeMore,
-            );
-          },
+          itemCount: serises.length,
+          itemBuilder: (context, index) => ListPosterItem(
+            imageUrl: serises[index].posterPath != null
+                ? Urls.getImageUrl(serises[index].posterPath!)
+                : Urls.noPosterUrl,
+            mediaType: "tv",
+            id: serises[index].id ?? -1,
+            ratting: serises[index].voteAverage ?? 0,
+          ),
         ),
       ),
     );

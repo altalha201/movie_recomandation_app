@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:movie_recomandation_app/src/models/person/external_id.dart';
-import 'package:movie_recomandation_app/src/presentation/screens/details_screen/content_cheacker.dart';
-import 'package:movie_recomandation_app/src/presentation/widgets/button/favourite_button.dart';
-import 'package:movie_recomandation_app/src/utils/navigation_helper.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../controllers/person_room_controller.dart';
+import '../../../../models/person/external_id.dart';
 import '../../../../models/table/table_model.dart';
 import '../../../../utils/app_functions.dart';
 import '../../../../utils/constants.dart';
+import '../../../../utils/navigation_helper.dart';
 import '../../../../utils/urls.dart';
 import '../../../widgets/app_progress_indicator.dart';
-import '../../../widgets/cards/list_image_widget.dart';
+import '../../../widgets/button/favourite_button.dart';
+import '../../../widgets/list_item/list_image_widget.dart';
 import '../../../widgets/table/app_table.dart';
 import '../../../widgets/title_widget.dart';
+import '../content_cheacker.dart';
 import 'social_media_section.dart';
 
 class PeopleDetailsScreen extends StatefulWidget {
@@ -107,16 +107,16 @@ class _PeopleDetailsScreenState extends State<PeopleDetailsScreen> {
   Widget _knownForSection(PersonRoomController value) {
     List<List<dynamic>> list = [];
     value.currentPage.movieCredits?.cast?.forEach((element) {
-      list.add([element.id, "movie", element.posterPath]);
+      list.add([element.id ?? -1, "movie", element.posterPath ?? "img"]);
     });
     value.currentPage.movieCredits?.crew?.forEach(
       (element) {
-        list.add([element.id, "movie", element.posterPath]);
+        list.add([element.id ?? -1, "movie", element.posterPath ?? "img"]);
       },
     );
     value.currentPage.tvCredits?.cast?.forEach(
       (element) {
-        list.add([element.id, "tv", element.posterPath]);
+        list.add([element.id ?? -1, "tv", element.posterPath ?? "img"]);
       },
     );
     value.currentPage.tvCredits?.crew?.forEach(
@@ -124,6 +124,9 @@ class _PeopleDetailsScreenState extends State<PeopleDetailsScreen> {
         list.add([element.id ?? -1, "tv", element.posterPath ?? "img"]);
       },
     );
+    if(list.isEmpty) {
+      return const SizedBox.shrink();
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: SizedBox(
