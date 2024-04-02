@@ -5,20 +5,16 @@ import '../services/api_services.dart';
 import '../utils/urls.dart';
 
 class SeriseRoomController extends ChangeNotifier{
-  bool _loadingTab = false, _loadingScreen = false;
+  bool _loadingScreen = false;
 
   final List<SeriseModel> _onAir = [], _topRated = [];
 
-  bool get loadingTab => _loadingTab;
   bool get loadingScreen => _loadingScreen;
 
   List<SeriseModel> get onAirSerise => _onAir;
   List<SeriseModel> get topSerise => _topRated;
 
-  Future<void> getTabInfo() async {
-    _loadingTab = true;
-    notifyListeners();
-
+  Future<void> getLists() async {
     final responses = await Future.wait([
       ApiServices.getRequest(Urls.tvUrl("on_the_air")),
       ApiServices.getRequest(Urls.tvUrl("top_rated")),
@@ -37,14 +33,11 @@ class SeriseRoomController extends ChangeNotifier{
       for (var element in pList) {
         _topRated.add(SeriseModel.fromJson(element));
       }
-    }
-
-    
-    _loadingTab = false;
+    }    
     notifyListeners();
   }
 
-  Future<void> getSeriseInfo(int id) async {
+  Future<void> getInfo(int id) async {
     _loadingScreen = true;
     notifyListeners();
   }

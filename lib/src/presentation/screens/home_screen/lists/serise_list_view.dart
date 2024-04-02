@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_recomandation_app/src/presentation/widgets/list_item/serise_list_item.dart';
 
 import '../../../../models/serise_model.dart';
+import '../../../../utils/constants.dart';
 import '../../../widgets/button/see_more_button.dart';
+import '../../../widgets/list_item/serise_list_item.dart';
 
 class SeriseListView extends StatelessWidget {
   const SeriseListView({
@@ -17,9 +18,9 @@ class SeriseListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: Constances.listMargin,
       child: SizedBox(
-        height: 196,
+        height: Constances.listHeight,
         child: ListView.builder(
           padding: EdgeInsets.zero,
           scrollDirection: Axis.horizontal,

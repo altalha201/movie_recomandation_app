@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "Movie Show",
         themeMode: ThemeMode.dark,
-        theme: ApplicationTheme.provide,
+        theme: ApplicationTheme.provide(context),
         debugShowCheckedModeBanner: false,
         home: const SplashScreen(),
       ),

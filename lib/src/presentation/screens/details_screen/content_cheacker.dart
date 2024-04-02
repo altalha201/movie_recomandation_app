@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'movie_details_screen.dart';
-import 'people_details_screen.dart';
+import 'person_details_screen/people_details_screen.dart';
 import 'serise_details_screen.dart';
 
 class ContentChecker extends StatefulWidget {
@@ -26,7 +26,7 @@ class _ContentCheckerState extends State<ContentChecker> {
         return SeriseDetailsScreen(id: widget.contentId);
       case "movie":
         return MovieDetailsScreen(id: widget.contentId);
-      case "people":
+      case "person":
         return PeopleDetailsScreen(id: widget.contentId);
       default:
         return errorScreen();
