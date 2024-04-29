@@ -8,6 +8,7 @@ import '../controllers/person_room_controller.dart';
 import '../controllers/search_function_controller.dart';
 import '../controllers/serise_room_controller.dart';
 import '../controllers/tranding_controllers.dart';
+import '../controllers/ui_controller/navbar_controller.dart';
 
 class Providers {
   static List<SingleChildWidget> all = [
@@ -28,6 +29,9 @@ class Providers {
     ),
     ChangeNotifierProvider<PersonRoomController>(
       create: (_) => PersonRoomController(),
+    ),
+    ChangeNotifierProvider<NavbarController>(
+      create: (_) => NavbarController(),
     ),
   ];
 
