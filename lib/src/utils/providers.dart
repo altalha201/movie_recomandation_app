@@ -36,9 +36,9 @@ class Providers {
   ];
 
   static Iterable<Future> onLoadUp(BuildContext context) => [
-        Provider.of<SeriseRoomController>(context, listen: false).getLists(),
-        Provider.of<MovieRoomController>(context, listen: false).getLists(),
-        Provider.of<PersonRoomController>(context, listen: false).getPopulerList(),
+        // Provider.of<SeriseRoomController>(context, listen: false).getLists(),
+        // Provider.of<MovieRoomController>(context, listen: false).getLists(),
+        // Provider.of<PersonRoomController>(context, listen: false).getPopulerList(),
         Provider.of<TrandingController>(context, listen: false).getTrandings(),
       ];
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_recomandation_app/src/controllers/ui_controller/navbar_controller.dart';
-import 'package:movie_recomandation_app/src/presentation/widgets/background.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import 'tabs/home_tab/home_tab.dart';
+import '../../../controllers/ui_controller/navbar_controller.dart';
+import '../../widgets/background.dart';
 
 class BottomNavbarScreen extends StatelessWidget {
   const BottomNavbarScreen({super.key});

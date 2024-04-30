@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../controllers/search_function_controller.dart';
-import '../../../utils/app_colors.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../../widgets/list_item/search_list_item.dart';
+import '../../../../../controllers/search_function_controller.dart';
+import '../../../../widgets/app_progress_indicator.dart';
+import '../../../../widgets/list_item/search_list_item.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+class SearchTab extends StatefulWidget {
+  const SearchTab({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<SearchTab> createState() => _SearchTabState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchTabState extends State<SearchTab> {
   late final TextEditingController searchETController;
 
   @override
@@ -26,12 +25,6 @@ class _SearchScreenState extends State<SearchScreen> {
   void dispose() {
     super.dispose();
     searchETController.dispose();
-  }
-
-  void onBackTap() {
-    Provider.of<SearchFunctionController>(context, listen: false)
-        .clearSearchList();
-    Navigator.of(context).pop();
   }
 
   Future<void> onChange(String value) async {
@@ -47,39 +40,39 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.scafoldBackground,
-        automaticallyImplyLeading: false,
-        flexibleSpace: SafeArea(
-          child: Padding(
+    return SafeArea(
+      child: Column(
+        children: [
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: searchBar(),
           ),
-        ),
-      ),
-      body: Consumer<SearchFunctionController>(
-        builder: (context, searchController, _) {
-          if (searchController.searching) {
-            return const AppProgressIndicator();
-          } else {
-            if (searchController.searchList.isEmpty) {
-              return const Center(
-                child: Text(
-                  "No Results found",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              );
-            } else {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: resultBody(searchController),
-              );
-            }
-          }
-        },
+          Expanded(
+            child: Consumer<SearchFunctionController>(
+              builder: (context, searchController, _) {
+                if (searchController.searching) {
+                  return const AppProgressIndicator();
+                } else {
+                  if (searchController.searchList.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        "No Results found",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: resultBody(searchController),
+                    );
+                  }
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -112,13 +105,6 @@ class _SearchScreenState extends State<SearchScreen> {
         onChanged: onChange,
         onSubmitted: onSubmit,
         decoration: InputDecoration(
-          suffixIcon: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: Colors.amber.withOpacity(0.6),
-            ),
-            onPressed: onBackTap,
-          ),
           prefixIcon: Icon(
             Icons.search,
             color: Colors.amber.withOpacity(0.6),

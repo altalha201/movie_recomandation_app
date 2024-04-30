@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../presentation/screens/bottom_navbar_screen/tabs/home_tab/home_tab.dart';
+import '../../presentation/screens/bottom_navbar_screen/tabs/search_tab/search_tab.dart';
 
 class NavbarController extends ChangeNotifier{
   int _currentTabIndex = 0;
@@ -9,7 +10,7 @@ class NavbarController extends ChangeNotifier{
   final List<Widget> _tabItems = [
     const HomeTab(),
     const Center(child: Text("1", style: TextStyle(color: Colors.white),)),
-    const Center(child: Text("2")),
+    const SearchTab(),
     const Center(child: Text("3")),
   ];
 

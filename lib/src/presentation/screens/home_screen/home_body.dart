@@ -4,9 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../controllers/movie_room_controller.dart';
 import '../../../controllers/person_room_controller.dart';
 import '../../../controllers/serise_room_controller.dart';
-import '../../../utils/navigation_helper.dart';
 import '../../widgets/title_widget.dart';
-import '../explore_screen/explore_screen.dart';
 import 'lists/movie_list_view.dart';
 import 'lists/person_list_view.dart';
 import 'lists/serise_list_view.dart';
@@ -15,10 +13,6 @@ class HomeBody extends StatelessWidget {
   const HomeBody({
     super.key,
   });
-
-  void _onExplore(BuildContext context) {
-    NavigationHelper.push(context, const ExploreScreen());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +46,6 @@ class HomeBody extends StatelessWidget {
       Consumer<PersonRoomController>(builder: (context, controller, _) {
         return PersonListView(persons: controller.populer);
       }),
-      const SizedBox(height: 8),
-      ElevatedButton(
-        onPressed: () => _onExplore(context),
-        child: const Text("Explore More"),
-      ),
       const SizedBox(height: 32.0),
     ];
   }

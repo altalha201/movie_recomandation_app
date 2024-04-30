@@ -4,25 +4,19 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 import '../models/response_model.dart';
-import '../utils/secrets.dart';
 
 class ApiServices {
   static final Map<String, String> _header = {
     "accept": "application/json",
   };
 
-  static final Map<String, dynamic> _perams = {"api_key": apiKey};
-
   static Future<ResponseModel> getRequest(
     String url, {
     Map<String, dynamic>? params,
   }) async {
     try {
-      if (params != null) {
-        _perams.addAll(params);
-      }
       final res = await http.get(
-        Uri.parse(url).replace(queryParameters: _perams),
+        Uri.parse(url).replace(queryParameters: params),
         headers: _header,
       );
       if (res.statusCode == 200) {

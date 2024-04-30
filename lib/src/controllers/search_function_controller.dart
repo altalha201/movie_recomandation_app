@@ -19,9 +19,7 @@ class SearchFunctionController extends ChangeNotifier {
     notifyListeners();
     Map<String, dynamic> perams = {
       "include_adult": "true",
-      "language": "en-US",
-      "page": "1",
-      "query": value,
+      "keyword": value,
     };
     final res = await ApiServices.getRequest(Urls.search, params: perams);
     if (res.success) {
