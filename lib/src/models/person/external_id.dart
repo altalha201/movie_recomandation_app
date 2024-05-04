@@ -1,5 +1,4 @@
-class ExtarnalID {
-  int? id;
+class ExternalIds {
   String? imdbId;
   String? facebookId;
   String? instagramId;
@@ -7,17 +6,28 @@ class ExtarnalID {
   String? twitterId;
   String? youtubeId;
 
-  ExtarnalID(
-      {this.id,
-      this.imdbId,
-      this.facebookId,
-      this.instagramId,
-      this.tiktokId,
-      this.twitterId,
-      this.youtubeId});
+  ExternalIds({
+    this.imdbId,
+    this.facebookId,
+    this.instagramId,
+    this.tiktokId,
+    this.twitterId,
+    this.youtubeId,
+  });
 
-  ExtarnalID.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+  bool get isNotNull {
+    if (imdbId == null &&
+        facebookId == null &&
+        instagramId == null &&
+        tiktokId == null &&
+        twitterId == null &&
+        youtubeId == null) {
+      return false;
+    }
+    return true;
+  }
+
+  ExternalIds.fromJson(Map<String, dynamic> json) {
     imdbId = json['imdb_id'];
     facebookId = json['facebook_id'];
     instagramId = json['instagram_id'];
@@ -26,21 +36,8 @@ class ExtarnalID {
     youtubeId = json['youtube_id'];
   }
 
-  bool get isNotNull {
-    if (imdbId != null ||
-        facebookId != null ||
-        instagramId != null ||
-        tiktokId != null ||
-        twitterId != null ||
-        youtubeId != null) {
-      return true;
-    }
-    return false;
-  }
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
     data['imdb_id'] = imdbId;
     data['facebook_id'] = facebookId;
     data['instagram_id'] = instagramId;

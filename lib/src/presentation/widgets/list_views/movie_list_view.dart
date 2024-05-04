@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/movie_model.dart';
-import '../../../../utils/constants.dart';
-import '../../../../utils/urls.dart';
-import '../../../widgets/list_item/list_poster_item.dart';
+import '../../../models/movie_model.dart';
+import '../../../utils/constants.dart';
+import '../../../utils/urls.dart';
+import '../list_item/list_poster_item.dart';
 
 class MovieListView extends StatelessWidget {
   const MovieListView({

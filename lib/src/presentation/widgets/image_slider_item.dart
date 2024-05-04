@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../models/media_model.dart';
 import '../../utils/navigation_helper.dart';
 import '../../utils/urls.dart';
-import '../screens/details_screen/content_cheacker.dart';
+import '../screens/details_screen/details_screen.dart';
 import 'cards/ratting_widget.dart';
 
 class ImageSliderItem extends StatelessWidget {
@@ -36,7 +36,7 @@ class ImageSliderItem extends StatelessWidget {
                   ),
             ),
             RattingWidget(
-              item.voteAverage ?? 0,
+              (item.votePercentage ?? 0) * 1.0,
             ),
           ],
         ),
@@ -47,7 +47,7 @@ class ImageSliderItem extends StatelessWidget {
   void onTap(BuildContext context) {
     NavigationHelper.push(
       context,
-      ContentChecker(
+      DetailsScreen(
         contentType: item.mediaType ?? "none",
         contentId: item.id ?? -1,
       ),

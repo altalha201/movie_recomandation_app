@@ -1,5 +1,3 @@
-import 'media_model.dart';
-
 class PersonModel {
   bool? adult;
   int? gender;
@@ -9,19 +7,16 @@ class PersonModel {
   String? originalName;
   double? popularity;
   String? profilePath;
-  List<MediaModel>? knownFor;
 
-  PersonModel({
-    this.adult,
-    this.gender,
-    this.id,
-    this.knownForDepartment,
-    this.name,
-    this.originalName,
-    this.popularity,
-    this.profilePath,
-    this.knownFor,
-  });
+  PersonModel(
+      {this.adult,
+      this.gender,
+      this.id,
+      this.knownForDepartment,
+      this.name,
+      this.originalName,
+      this.popularity,
+      this.profilePath});
 
   PersonModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
@@ -32,12 +27,6 @@ class PersonModel {
     originalName = json['original_name'];
     popularity = json['popularity'];
     profilePath = json['profile_path'];
-    if (json['known_for'] != null) {
-      knownFor = <MediaModel>[];
-      json['known_for'].forEach((v) {
-        knownFor!.add(MediaModel.fromJson(v));
-      });
-    }
   }
 
   Map<String, dynamic> toJson() {
@@ -50,9 +39,6 @@ class PersonModel {
     data['original_name'] = originalName;
     data['popularity'] = popularity;
     data['profile_path'] = profilePath;
-    if (knownFor != null) {
-      data['known_for'] = knownFor!.map((v) => v.toJson()).toList();
-    }
     return data;
   }
 }

@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../models/media_model.dart';
 import '../../../utils/navigation_helper.dart';
 import '../../../utils/urls.dart';
-import '../../screens/details_screen/content_cheacker.dart';
-import '../cards/popularity_widget.dart';
+import '../../screens/details_screen/details_screen.dart';
 import '../cards/ratting_widget.dart';
 import '../tags/tag_widget.dart';
 
@@ -19,7 +18,7 @@ class SearchListItem extends StatelessWidget {
   void goToDetails(BuildContext context) {
     NavigationHelper.push(
       context,
-      ContentChecker(
+      DetailsScreen(
         contentType: item.mediaType ?? "",
         contentId: item.id ?? -1,
       ),
@@ -55,7 +54,7 @@ class SearchListItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          item.name ?? item.title ?? "Unkonwn",
+          item.mediaTitle ?? "Unkonwn",
           style: const TextStyle(
             color: Colors.white,
             fontSize: 18,
@@ -71,18 +70,18 @@ class SearchListItem extends StatelessWidget {
             TagWidget(
               text: item.mediaType?.toUpperCase() ?? "Unknown",
             ),
-            RattingWidget(item.voteAverage ?? 0),
-            PopularityWidget(ratting: item.popularity ?? 0),
+            RattingWidget((item.votePercentage ?? 0) * 1.0),
+            // PopularityWidget(ratting: item.popularity ?? 0),
           ],
         ),
         const SizedBox(height: 6),
-        Text(
-          item.overview ?? "",
-          maxLines: 3,
-          style: const TextStyle(color: Colors.grey),
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.justify,
-        )
+        // Text(
+        //   item. ?? "",
+        //   maxLines: 3,
+        //   style: const TextStyle(color: Colors.grey),
+        //   overflow: TextOverflow.ellipsis,
+        //   textAlign: TextAlign.justify,
+        // )
       ],
     );
   }

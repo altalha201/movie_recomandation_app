@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/navigation_helper.dart';
-import '../../screens/details_screen/content_cheacker.dart';
+import '../../screens/details_screen/details_screen.dart';
 import '../cards/ratting_widget.dart';
 import 'list_image_widget.dart';
 
@@ -22,7 +22,7 @@ class ListPosterItem extends StatelessWidget {
   void _onTap(BuildContext context) {
     NavigationHelper.push(
       context,
-      ContentChecker(
+      DetailsScreen(
         contentType: mediaType,
         contentId: id,
       ),

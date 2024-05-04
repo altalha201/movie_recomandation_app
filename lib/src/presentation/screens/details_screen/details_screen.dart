@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'movie_details_screen.dart';
-import 'person_details_screen/people_details_screen.dart';
-import 'serise_details_screen.dart';
+import '../movie_details_screen/movie_details_screen.dart';
+import '../person_details_screen/person_details_screen.dart';
+import '../serise_details_screen/serise_details_screen.dart';
 
-class ContentChecker extends StatefulWidget {
-  const ContentChecker({
+class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({
     super.key,
     required this.contentType,
     required this.contentId,
@@ -15,33 +15,33 @@ class ContentChecker extends StatefulWidget {
   final String contentType;
   final int contentId;
 
-  @override
-  State<ContentChecker> createState() => _ContentCheckerState();
-}
-
-class _ContentCheckerState extends State<ContentChecker> {
-  Widget viewReturner() {
-    switch (widget.contentType) {
+  Widget _viewReturner() {
+    switch (contentType) {
       case "tv":
-        return SeriseDetailsScreen(id: widget.contentId);
+        return SeriseDetailsScreen(id: contentId);
       case "movie":
-        return MovieDetailsScreen(id: widget.contentId);
+        return MovieDetailsScreen(id: contentId);
       case "person":
-        return PeopleDetailsScreen(id: widget.contentId);
+        return PersonDetailsScreen(id: contentId);
       default:
-        return errorScreen();
+        return const _ErrorScreen();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.contentId == -1) {
-      return errorScreen();
+    if (contentId == -1) {
+      return const _ErrorScreen();
     }
-    return viewReturner();
+    return _viewReturner();
   }
+}
 
-  Widget errorScreen() {
+class _ErrorScreen extends StatelessWidget {
+  const _ErrorScreen();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(

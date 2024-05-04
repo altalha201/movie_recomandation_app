@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../models/person_model.dart';
 import '../../../utils/navigation_helper.dart';
 import '../../../utils/urls.dart';
-import '../../screens/details_screen/content_cheacker.dart';
+import '../../screens/details_screen/details_screen.dart';
 import 'list_image_widget.dart';
 
 class PersonListItem extends StatelessWidget {
@@ -14,7 +14,7 @@ class PersonListItem extends StatelessWidget {
   void _onTap(BuildContext context) {
     NavigationHelper.push(
       context,
-      ContentChecker(
+      DetailsScreen(
         contentType: "person",
         contentId: person.id ?? -1,
       ),

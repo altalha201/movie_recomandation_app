@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../models/tranding_list_item.dart';
 import '../../../utils/navigation_helper.dart';
 import '../../../utils/urls.dart';
-import '../../screens/details_screen/content_cheacker.dart';
+import '../../screens/details_screen/details_screen.dart';
 import '../cards/percentage_widget.dart';
 
 class TrandingListWidget extends StatelessWidget {
@@ -19,7 +19,7 @@ class TrandingListWidget extends StatelessWidget {
       onTap: () {
         NavigationHelper.push(
           context,
-          ContentChecker(
+          DetailsScreen(
             contentType: data.mediaType ?? "",
             contentId: data.id ?? -1,
           ),

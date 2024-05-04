@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/serise_model.dart';
-import '../../../../utils/constants.dart';
-import '../../../../utils/urls.dart';
-import '../../../widgets/list_item/list_poster_item.dart';
+import '../../../models/serise_model.dart';
+import '../../../utils/constants.dart';
+import '../../../utils/urls.dart';
+import '../list_item/list_poster_item.dart';
 
 class SeriseListView extends StatelessWidget {
   const SeriseListView({
