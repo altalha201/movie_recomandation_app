@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/media_model.dart';
+import '../../../models/list_item/search_model.dart';
 import '../../../utils/navigation_helper.dart';
 import '../../../utils/urls.dart';
 import '../../screens/details_screen/details_screen.dart';
+import '../cards/popularity_widget.dart';
 import '../cards/ratting_widget.dart';
 import '../tags/tag_widget.dart';
 
@@ -13,7 +14,7 @@ class SearchListItem extends StatelessWidget {
     required this.item,
   });
 
-  final MediaModel item;
+  final SearchModel item;
 
   void goToDetails(BuildContext context) {
     NavigationHelper.push(
@@ -35,58 +36,79 @@ class SearchListItem extends StatelessWidget {
           height: 240,
           child: Row(
             children: [
-              poster(),
+              _Poster(item.posterPath),
               const SizedBox(width: 12),
-              Expanded(
-                child: detailsSection(context),
-              ),
+              _Details(item: item),
             ],
           ),
         ),
       ),
     );
   }
+}
 
-  Widget detailsSection(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          item.mediaTitle ?? "Unkonwn",
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-          ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        const SizedBox(height: 4),
-        Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            TagWidget(
-              text: item.mediaType?.toUpperCase() ?? "Unknown",
+class _Details extends StatelessWidget {
+  const _Details({
+    required this.item,
+  });
+
+  final SearchModel item;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            item.title ?? item.name ?? "Unkonwn",
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
             ),
-            RattingWidget((item.votePercentage ?? 0) * 1.0),
-            // PopularityWidget(ratting: item.popularity ?? 0),
-          ],
-        ),
-        const SizedBox(height: 6),
-        // Text(
-        //   item. ?? "",
-        //   maxLines: 3,
-        //   style: const TextStyle(color: Colors.grey),
-        //   overflow: TextOverflow.ellipsis,
-        //   textAlign: TextAlign.justify,
-        // )
-      ],
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 4),
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              TagWidget(
+                text: item.mediaType?.toUpperCase() ?? "Unknown",
+              ),
+              if (item.adult ?? false)
+                const TagWidget(
+                  text: "Adult",
+                  color: Colors.red,
+                ),
+              RattingWidget((item.votePercentage ?? 0) / 10.0),
+              PopularityWidget(ratting: item.popularity ?? 0),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(
+            item.overview ?? "",
+            maxLines: 3,
+            style: const TextStyle(color: Colors.grey),
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.justify,
+          )
+        ],
+      ),
     );
   }
+}
 
-  Widget poster() {
+class _Poster extends StatelessWidget {
+  const _Poster(this.posterPath);
+
+  final String? posterPath;
+
+  @override
+  Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 9 / 16,
       child: Container(
@@ -95,8 +117,8 @@ class SearchListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           image: DecorationImage(
             image: NetworkImage(
-              item.posterPath != null
-                  ? Urls.getImageUrl(item.posterPath!)
+              posterPath != null
+                  ? Urls.getImageUrl(posterPath!)
                   : Urls.noPosterUrl,
             ),
             fit: BoxFit.fill,

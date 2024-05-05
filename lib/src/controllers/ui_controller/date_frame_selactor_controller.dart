@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'tranding_controllers.dart';
+import '../data_controller/tranding_controllers.dart';
 
 class DateFrameSelectorController extends ChangeNotifier {
   int _value = 1;

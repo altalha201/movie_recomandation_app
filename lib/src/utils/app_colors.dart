@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  const AppColors();
+  
   static const Color scafoldBackground = Color.fromRGBO(18, 18, 18, 0.5);
   static const Color appbarBackground = Color.fromRGBO(18, 18, 18, 0.9);
   static const Color toastBackground = Color.fromRGBO(18, 18, 18, 1);

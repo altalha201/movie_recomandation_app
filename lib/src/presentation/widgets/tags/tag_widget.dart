@@ -7,10 +7,12 @@ class TagWidget extends StatelessWidget {
     super.key,
     required this.text,
     this.learge = false,
+    this.color = AppColors.black35,
   });
 
   final String text;
   final bool learge;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class TagWidget extends StatelessWidget {
         vertical: 2.0,
       ),
       decoration: BoxDecoration(
-        color: AppColors.black35,
+        color: color,
         borderRadius: BorderRadius.circular(2),
       ),
       child: Text(

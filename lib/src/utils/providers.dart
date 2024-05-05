@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import '../controllers/date_frame_selactor_controller.dart';
-import '../controllers/movie_room_controller.dart';
-import '../controllers/person_room_controller.dart';
-import '../controllers/search_function_controller.dart';
-import '../controllers/serise_room_controller.dart';
-import '../controllers/tranding_controllers.dart';
+import '../controllers/ui_controller/date_frame_selactor_controller.dart';
+import '../controllers/data_controller/movie_room_controller.dart';
+import '../controllers/data_controller/person_room_controller.dart';
+import '../controllers/data_controller/search_function_controller.dart';
+import '../controllers/data_controller/serise_room_controller.dart';
+import '../controllers/data_controller/tranding_controllers.dart';
 import '../controllers/ui_controller/navbar_controller.dart';
 
 class Providers {
@@ -36,8 +36,8 @@ class Providers {
   ];
 
   static Iterable<Future> onLoadUp(BuildContext context) => [
-        // Provider.of<SeriseRoomController>(context, listen: false).getLists(),
-        // Provider.of<MovieRoomController>(context, listen: false).getLists(),
+        Provider.of<SeriseRoomController>(context, listen: false).getAiringToday(),
+        Provider.of<MovieRoomController>(context, listen: false).getNowPlaying(),
         Provider.of<PersonRoomController>(context, listen: false).getPopulerList(),
         Provider.of<TrandingController>(context, listen: false).getTrandings(),
       ];

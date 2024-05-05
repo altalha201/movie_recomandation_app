@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../models/media_model.dart';
-import '../services/api_services.dart';
-import '../utils/toast_manager.dart';
-import '../utils/urls.dart';
+import '../../models/list_item/search_model.dart';
+import '../../services/api_services.dart';
+import '../../utils/toast_manager.dart';
+import '../../utils/urls.dart';
 
 class SearchFunctionController extends ChangeNotifier {
-  final List<MediaModel> _searchList = [];
+  final List<SearchModel> _searchList = [];
 
   bool _searching = false;
 
-  List<MediaModel> get searchList => _searchList;
+  List<SearchModel> get searchList => _searchList;
   bool get searching => _searching;
 
   Future<void> onSearch(String value) async {
@@ -27,7 +27,7 @@ class SearchFunctionController extends ChangeNotifier {
 
       for (var element in searchResults) {
         if (element['media_type'] case 'tv' || 'movie') {
-          _searchList.add(MediaModel.fromJson(element));
+          _searchList.add(SearchModel.fromJson(element));
         }
       }
     } else {

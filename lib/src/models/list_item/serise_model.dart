@@ -11,25 +11,22 @@ class SeriseModel {
   String? posterPath;
   String? firstAirDate;
   String? name;
-  double? voteAverage;
-  int? voteCount;
+  int? votePercentage;
 
-  SeriseModel({
-    this.adult,
-    this.backdropPath,
-    this.genreIds,
-    this.id,
-    this.originCountry,
-    this.originalLanguage,
-    this.originalName,
-    this.overview,
-    this.popularity,
-    this.posterPath,
-    this.firstAirDate,
-    this.name,
-    this.voteAverage,
-    this.voteCount,
-  });
+  SeriseModel(
+      {this.adult,
+      this.backdropPath,
+      this.genreIds,
+      this.id,
+      this.originCountry,
+      this.originalLanguage,
+      this.originalName,
+      this.overview,
+      this.popularity,
+      this.posterPath,
+      this.firstAirDate,
+      this.name,
+      this.votePercentage});
 
   SeriseModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
@@ -44,8 +41,7 @@ class SeriseModel {
     posterPath = json['poster_path'];
     firstAirDate = json['first_air_date'];
     name = json['name'];
-    voteAverage = json['vote_average'];
-    voteCount = json['vote_count'];
+    votePercentage = json['vote_percentage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -62,8 +58,7 @@ class SeriseModel {
     data['poster_path'] = posterPath;
     data['first_air_date'] = firstAirDate;
     data['name'] = name;
-    data['vote_average'] = voteAverage;
-    data['vote_count'] = voteCount;
+    data['vote_percentage'] = votePercentage;
     return data;
   }
 }

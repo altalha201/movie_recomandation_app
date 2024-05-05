@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../models/tranding_list_item.dart';
-import '../services/api_services.dart';
-import '../utils/urls.dart';
+import '../../models/list_item/tranding_model.dart';
+import '../../services/api_services.dart';
+import '../../utils/urls.dart';
 
 class TrandingController extends ChangeNotifier {
-  final List<TrandingListItem> _trandingList = [];
+  final List<TrandingModel> _trandingList = [];
   bool _isLoading = false;
 
-  List<TrandingListItem> get trandingList => _trandingList;
+  List<TrandingModel> get trandingList => _trandingList;
   bool get isLoading => _isLoading;
 
   Future<void> getTrandings({String timeWindow = "day"}) async {
@@ -20,7 +20,7 @@ class TrandingController extends ChangeNotifier {
     if (res.success) {
       var currentJsonList = res.body?["tranding"] ?? [];
       for (var element in currentJsonList) {
-        _trandingList.add(TrandingListItem.fromJson(element));
+        _trandingList.add(TrandingModel.fromJson(element));
       }
     } else {
       Fluttertoast.showToast(msg: "Something went wrong");

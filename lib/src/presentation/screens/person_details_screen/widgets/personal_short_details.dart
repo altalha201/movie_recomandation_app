@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../controllers/person_room_controller.dart';
+import '../../../../controllers/data_controller/person_room_controller.dart';
 import '../../../../utils/constants.dart';
 import '../../../widgets/button/favourite_button.dart';
 

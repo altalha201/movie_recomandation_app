@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/media_model.dart';
+import '../../models/list_item/media_model.dart';
 import '../../utils/navigation_helper.dart';
 import '../../utils/urls.dart';
 import '../screens/details_screen/details_screen.dart';

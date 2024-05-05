@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/person_model.dart';
+import '../../../models/list_item/person_model.dart';
 import '../../../utils/constants.dart';
 import '../list_item/person_list_item.dart';
 
@@ -15,14 +15,28 @@ class PersonListView extends StatelessWidget {
       padding: Constances.listMargin,
       child: SizedBox(
         height: Constances.listHeight,
-        child: ListView.builder(
-          padding: EdgeInsets.zero,
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemCount: persons.length,
-          itemBuilder: (context, index) => PersonListItem(
-            persons[index],
-          ),
+        child: Builder(
+          builder: (context) {
+            if (persons.isEmpty) {
+            return Center(
+              child: Text(
+                "Nothing to Show",
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Colors.white,
+                    ),
+              ),
+            );
+          }
+            return ListView.builder(
+              padding: EdgeInsets.zero,
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: persons.length,
+              itemBuilder: (context, index) => PersonListItem(
+                persons[index],
+              ),
+            );
+          }
         ),
       ),
     );

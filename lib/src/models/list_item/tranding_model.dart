@@ -1,4 +1,4 @@
-class TrandingListItem {
+class TrandingModel {
   int? id;
   String? mediaType;
   String? posterPath;
@@ -6,7 +6,7 @@ class TrandingListItem {
   String? mediaTitle;
   String? releaseDate;
 
-  TrandingListItem(
+  TrandingModel(
       {this.id,
       this.mediaType,
       this.posterPath,
@@ -14,7 +14,7 @@ class TrandingListItem {
       this.mediaTitle,
       this.releaseDate});
 
-  TrandingListItem.fromJson(Map<String, dynamic> json) {
+  TrandingModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     mediaType = json['media_type'];
     posterPath = json['poster_path'];

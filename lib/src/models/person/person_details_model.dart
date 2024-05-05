@@ -1,4 +1,4 @@
-import '../media_model.dart';
+import '../list_item/media_model.dart';
 import 'external_id.dart';
 import 'images.dart';
 

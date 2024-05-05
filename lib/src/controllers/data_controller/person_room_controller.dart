@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../models/person/person_details_model.dart';
-import '../models/person_model.dart';
-import '../services/api_services.dart';
-import '../utils/urls.dart';
+import '../../models/person/person_details_model.dart';
+import '../../models/list_item/person_model.dart';
+import '../../services/api_services.dart';
+import '../../utils/urls.dart';
 
 class PersonRoomController extends ChangeNotifier {
   final List<PersonModel> _populer = [];

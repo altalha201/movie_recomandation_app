@@ -11,8 +11,7 @@ class MovieModel {
   String? releaseDate;
   String? title;
   bool? video;
-  double? voteAverage;
-  int? voteCount;
+  int? votePercentage;
 
   MovieModel({
     this.adult,
@@ -27,8 +26,7 @@ class MovieModel {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage,
-    this.voteCount,
+    this.votePercentage,
   });
 
   MovieModel.fromJson(Map<String, dynamic> json) {
@@ -44,8 +42,7 @@ class MovieModel {
     releaseDate = json['release_date'];
     title = json['title'];
     video = json['video'];
-    voteAverage = json['vote_average'];
-    voteCount = json['vote_count'];
+    votePercentage = json['vote_percentage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -62,8 +59,7 @@ class MovieModel {
     data['release_date'] = releaseDate;
     data['title'] = title;
     data['video'] = video;
-    data['vote_average'] = voteAverage;
-    data['vote_count'] = voteCount;
+    data['vote_percentage'] = votePercentage;
     return data;
   }
 }

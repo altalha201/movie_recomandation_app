@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../controllers/search_function_controller.dart';
+import '../../../../../controllers/data_controller/search_function_controller.dart';
 import '../../../../widgets/app_progress_indicator.dart';
 import '../../../../widgets/list_item/search_list_item.dart';
 
@@ -18,13 +18,20 @@ class _SearchTabState extends State<SearchTab> {
   @override
   void initState() {
     super.initState();
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback(
+      (timeStamp) {
+        Provider.of<SearchFunctionController>(context, listen: false)
+            .clearSearchList();
+      },
+    );
+
     searchETController = TextEditingController();
   }
 
   @override
   void dispose() {
-    super.dispose();
     searchETController.dispose();
+    super.dispose();
   }
 
   Future<void> onChange(String value) async {

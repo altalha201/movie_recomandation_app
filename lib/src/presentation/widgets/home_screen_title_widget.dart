@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../controllers/date_frame_selactor_controller.dart';
+import '../../controllers/ui_controller/date_frame_selactor_controller.dart';
 
 class HomeScreenTitleWidget extends StatelessWidget {
   const HomeScreenTitleWidget({

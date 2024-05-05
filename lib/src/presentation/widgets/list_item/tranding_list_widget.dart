@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/tranding_list_item.dart';
+import '../../../models/list_item/tranding_model.dart';
 import '../../../utils/navigation_helper.dart';
 import '../../../utils/urls.dart';
 import '../../screens/details_screen/details_screen.dart';
 import '../cards/percentage_widget.dart';
 
 class TrandingListWidget extends StatelessWidget {
-  final TrandingListItem data;
+  final TrandingModel data;
   const TrandingListWidget({
     super.key,
     required this.data,
