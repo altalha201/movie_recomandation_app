@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../../../utils/app_colors.dart';
+import 'package:movie_show_utilites/movie_show_utilites.dart';
 
 class TagWidget extends StatelessWidget {
   const TagWidget({
     super.key,
     required this.text,
     this.learge = false,
-    this.color = AppColors.black35,
+    this.color = MSColors.black35,
   });
 
   final String text;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movie_show_utilites/movie_show_utilites.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controllers/data_controller/person_room_controller.dart';
-import '../../../utils/app_colors.dart';
 import '../../widgets/app_progress_indicator.dart';
 import '../../widgets/table/app_table.dart';
 import '../../widgets/title_widget.dart';
@@ -62,17 +62,17 @@ class _PersonDetailsView extends StatelessWidget {
         PersonalShortDetails(),
         _SocialMediaSection(),
         Divider(
-          color: AppColors.dividerGrey,
+          color: MSColors.dividerGrey,
         ),
         TitleWidget("Biography"),
         _BiograficText(),
         _BioDataSection(),
         PersonalImages(),
         Divider(
-          color: AppColors.dividerGrey,
+          color: MSColors.dividerGrey,
         ),
         TitleWidget("Known For"),
-        CastIn()
+        CastIn(),
       ],
     );
   }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movie_show_utilites/movie_show_utilites.dart';
 import 'package:provider/provider.dart';
 
 import 'src/presentation/screens/splash_screen/splash_screen.dart';
-import 'src/utils/application_theme.dart';
 import 'src/utils/providers.dart';
+
 
 void main() async {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "Movie Show",
         themeMode: ThemeMode.dark,
-        theme: ApplicationTheme.provide(context),
+        theme: MSTheme.provide(context),
         debugShowCheckedModeBanner: false,
         home: const SplashScreen(),
       ),

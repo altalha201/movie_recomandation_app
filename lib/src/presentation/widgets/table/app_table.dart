@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:model/model.dart';
 
-import '../../../models/table/table_model.dart';
 import 'data_cell.dart';
 import 'title_cell.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movie_show_utilites/movie_show_utilites.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../controllers/data_controller/person_room_controller.dart';
-import '../../../../utils/constants.dart';
 import '../../../widgets/button/favourite_button.dart';
 
 class PersonalShortDetails extends StatelessWidget {
@@ -47,8 +47,8 @@ class _ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Constances.listItemHeight,
-      width: Constances.listItemWeight,
+      height: MSConstances.listItemHeight,
+      width: MSConstances.listItemWeight,
       margin: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),

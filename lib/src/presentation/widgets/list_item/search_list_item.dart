@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:model/model.dart';
+import 'package:movie_show_api/movie_show_api.dart';
+import 'package:navigate/navigate.dart';
 
-import '../../../models/list_item/search_model.dart';
-import '../../../utils/navigation_helper.dart';
-import '../../../utils/urls.dart';
 import '../../screens/details_screen/details_screen.dart';
 import '../cards/popularity_widget.dart';
 import '../cards/ratting_widget.dart';
@@ -17,7 +17,7 @@ class SearchListItem extends StatelessWidget {
   final SearchModel item;
 
   void goToDetails(BuildContext context) {
-    NavigationHelper.push(
+    Navigate.push(
       context,
       DetailsScreen(
         contentType: item.mediaType ?? "",
@@ -118,8 +118,8 @@ class _Poster extends StatelessWidget {
           image: DecorationImage(
             image: NetworkImage(
               posterPath != null
-                  ? Urls.getImageUrl(posterPath!)
-                  : Urls.noPosterUrl,
+                  ? EndPoints.getImageUrl(posterPath!)
+                  : EndPoints.noPosterUrl,
             ),
             fit: BoxFit.fill,
           ),

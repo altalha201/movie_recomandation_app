@@ -36,9 +36,46 @@ class Providers {
   ];
 
   static Iterable<Future> onLoadUp(BuildContext context) => [
-        Provider.of<SeriseRoomController>(context, listen: false).getAiringToday(),
-        Provider.of<MovieRoomController>(context, listen: false).getNowPlaying(),
-        Provider.of<PersonRoomController>(context, listen: false).getPopulerList(),
-        Provider.of<TrandingController>(context, listen: false).getTrandings(),
+        Provider.of<SeriseRoomController>(
+          context,
+          listen: false,
+        ).getAiringToday(),
+        Provider.of<MovieRoomController>(
+          context,
+          listen: false,
+        ).getNowPlaying(),
+        Provider.of<PersonRoomController>(
+          context,
+          listen: false,
+        ).getPopulerList(),
+        Provider.of<TrandingController>(
+          context,
+          listen: false,
+        ).getTrandings(),
+        //
+        Provider.of<MovieRoomController>(
+          context,
+          listen: false,
+        ).getPopular(),
+        Provider.of<MovieRoomController>(
+          context,
+          listen: false,
+        ).getTopRated(),
+        Provider.of<MovieRoomController>(
+          context,
+          listen: false,
+        ).getUpcoming(),
+        Provider.of<SeriseRoomController>(
+          context,
+          listen: false,
+        ).getOnTheAir(),
+        Provider.of<SeriseRoomController>(
+          context,
+          listen: false,
+        ).getPopular(),
+        Provider.of<SeriseRoomController>(
+          context,
+          listen: false,
+        ).getTopRated(),
       ];
 }

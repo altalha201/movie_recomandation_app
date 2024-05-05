@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../utils/constants.dart';
+import 'package:movie_show_utilites/movie_show_utilites.dart';
 
 class ListImageWidget extends StatelessWidget {
   const ListImageWidget(
@@ -26,9 +25,9 @@ class ListImageWidget extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        height: Constances.listItemHeight,
-        width: Constances.listItemWeight,
-        margin: Constances.listItemMargin,
+        height: MSConstances.listItemHeight,
+        width: MSConstances.listItemWeight,
+        margin: MSConstances.listItemMargin,
         padding: padding,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../../../models/person/external_id.dart';
+import 'package:model/model.dart';
 
 class SocialMedias extends StatelessWidget {
   const SocialMedias({
@@ -9,7 +8,7 @@ class SocialMedias extends StatelessWidget {
     this.model,
   });
 
-  final ExternalIds? model;
+  final ExternalIdsModel? model;
 
   @override
   Widget build(BuildContext context) {

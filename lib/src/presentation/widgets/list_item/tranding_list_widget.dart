@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:model/model.dart';
+import 'package:movie_show_api/movie_show_api.dart';
+import 'package:navigate/navigate.dart';
 
-import '../../../models/list_item/tranding_model.dart';
-import '../../../utils/navigation_helper.dart';
-import '../../../utils/urls.dart';
 import '../../screens/details_screen/details_screen.dart';
 import '../cards/percentage_widget.dart';
 
@@ -17,7 +17,7 @@ class TrandingListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        NavigationHelper.push(
+        Navigate.push(
           context,
           DetailsScreen(
             contentType: data.mediaType ?? "",
@@ -34,8 +34,8 @@ class TrandingListWidget extends StatelessWidget {
             image: DecorationImage(
               image: NetworkImage(
                 (data.posterPath != null)
-                    ? Urls.getImageUrl(data.posterPath!)
-                    : Urls.noPosterUrl,
+                    ? EndPoints.getImageUrl(data.posterPath!)
+                    : EndPoints.noPosterUrl,
               ),
               fit: BoxFit.fill,
             ),

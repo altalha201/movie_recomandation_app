@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../models/list_item/movie_model.dart';
-import '../../services/api_services.dart';
-import '../../utils/urls.dart';
+import 'package:model/model.dart';
+import 'package:movie_show_api/movie_show_api.dart';
 
 class MovieRoomController extends ChangeNotifier {
   bool _loadingScreen = false;
@@ -21,7 +19,7 @@ class MovieRoomController extends ChangeNotifier {
 
   Future<void> getNowPlaying() async {
     final response = await ApiServices.getRequest(
-      Urls.moviUrls("now_playing"),
+      EndPoints.movieUrls("now_playing"),
       params: {
         "region": "bd",
       },
@@ -40,7 +38,7 @@ class MovieRoomController extends ChangeNotifier {
 
   Future<void> getUpcoming() async {
     final response = await ApiServices.getRequest(
-      Urls.moviUrls("upcoming"),
+      EndPoints.movieUrls("upcoming"),
       params: {
         "region": "bd",
       },
@@ -58,7 +56,8 @@ class MovieRoomController extends ChangeNotifier {
   }
 
   Future<void> getPopular() async {
-    final response = await ApiServices.getRequest(Urls.moviUrls("popular"));
+    final response =
+        await ApiServices.getRequest(EndPoints.movieUrls("popular"));
 
     if (response.success) {
       _popularList.clear();
@@ -72,7 +71,8 @@ class MovieRoomController extends ChangeNotifier {
   }
 
   Future<void> getTopRated() async {
-    final response = await ApiServices.getRequest(Urls.moviUrls("top_rated"));
+    final response =
+        await ApiServices.getRequest(EndPoints.movieUrls("top_rated"));
 
     if (response.success) {
       _topRatedList.clear();

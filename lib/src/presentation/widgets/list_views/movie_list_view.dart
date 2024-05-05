@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:model/model.dart';
+import 'package:movie_show_api/movie_show_api.dart';
+import 'package:movie_show_utilites/movie_show_utilites.dart';
 
-import '../../../models/list_item/movie_model.dart';
-import '../../../utils/constants.dart';
-import '../../../utils/urls.dart';
 import '../list_item/list_poster_item.dart';
 
 class MovieListView extends StatelessWidget {
@@ -16,9 +16,9 @@ class MovieListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Constances.listMargin,
+      padding: MSConstances.listMargin,
       child: SizedBox(
-        height: Constances.listHeight,
+        height: MSConstances.listHeight,
         child: Builder(builder: (context) {
           if (movies.isEmpty) {
             return Center(
@@ -37,8 +37,8 @@ class MovieListView extends StatelessWidget {
             itemCount: movies.length,
             itemBuilder: (context, index) => ListPosterItem(
               imageUrl: movies[index].posterPath != null
-                  ? Urls.getImageUrl(movies[index].posterPath!)
-                  : Urls.noPosterUrl,
+                  ? EndPoints.getImageUrl(movies[index].posterPath!)
+                  : EndPoints.noPosterUrl,
               mediaType: "movie",
               id: movies[index].id ?? -1,
               ratting: (movies[index].votePercentage ?? 0) / 10.0,

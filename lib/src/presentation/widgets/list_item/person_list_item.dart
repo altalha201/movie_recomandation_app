@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:model/model.dart';
+import 'package:movie_show_api/movie_show_api.dart';
+import 'package:navigate/navigate.dart';
 
-import '../../../models/list_item/person_model.dart';
-import '../../../utils/navigation_helper.dart';
-import '../../../utils/urls.dart';
 import '../../screens/details_screen/details_screen.dart';
 import 'list_image_widget.dart';
 
@@ -12,7 +12,7 @@ class PersonListItem extends StatelessWidget {
   final PersonModel person;
 
   void _onTap(BuildContext context) {
-    NavigationHelper.push(
+    Navigate.push(
       context,
       DetailsScreen(
         contentType: "person",
@@ -24,8 +24,8 @@ class PersonListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var imgPath = person.profilePath != null
-        ? Urls.getImageUrl(person.profilePath!)
-        : Urls.noPosterUrl;
+        ? EndPoints.getImageUrl(person.profilePath!)
+        : EndPoints.noPosterUrl;
     return ListImageWidget(
       imgPath,
       onPressed: () => _onTap(context),

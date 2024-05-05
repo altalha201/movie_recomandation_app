@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:model/model.dart';
+import 'package:movie_show_utilites/movie_show_utilites.dart';
 
-import '../../../models/list_item/person_model.dart';
-import '../../../utils/constants.dart';
 import '../list_item/person_list_item.dart';
 
 class PersonListView extends StatelessWidget {
@@ -12,9 +12,9 @@ class PersonListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Constances.listMargin,
+      padding: MSConstances.listMargin,
       child: SizedBox(
-        height: Constances.listHeight,
+        height: MSConstances.listHeight,
         child: Builder(
           builder: (context) {
             if (persons.isEmpty) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:navigate/navigate.dart';
 
-import '../../../utils/navigation_helper.dart';
 import '../../screens/details_screen/details_screen.dart';
 import '../cards/ratting_widget.dart';
 import 'list_image_widget.dart';
@@ -20,7 +20,7 @@ class ListPosterItem extends StatelessWidget {
   final double ratting;
 
   void _onTap(BuildContext context) {
-    NavigationHelper.push(
+    Navigate.push(
       context,
       DetailsScreen(
         contentType: mediaType,

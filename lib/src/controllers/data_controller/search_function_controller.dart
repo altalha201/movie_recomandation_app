@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../models/list_item/search_model.dart';
-import '../../services/api_services.dart';
-import '../../utils/toast_manager.dart';
-import '../../utils/urls.dart';
+import 'package:model/model.dart';
+import 'package:movie_show_api/movie_show_api.dart';
+import 'package:movie_show_utilites/movie_show_utilites.dart';
 
 class SearchFunctionController extends ChangeNotifier {
   final List<SearchModel> _searchList = [];
@@ -21,7 +19,7 @@ class SearchFunctionController extends ChangeNotifier {
       "include_adult": "true",
       "keyword": value,
     };
-    final res = await ApiServices.getRequest(Urls.search, params: perams);
+    final res = await ApiServices.getRequest(EndPoints.search, params: perams);
     if (res.success) {
       List searchResults = res.body?["results"] ?? [];
 
@@ -31,7 +29,7 @@ class SearchFunctionController extends ChangeNotifier {
         }
       }
     } else {
-      ToastManager.errorToast("Error while searching");
+      MSToast.errorToast("Error while searching");
     }
     _searching = false;
     notifyListeners();

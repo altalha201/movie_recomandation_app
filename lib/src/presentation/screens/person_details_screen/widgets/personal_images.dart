@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movie_show_api/movie_show_api.dart';
+import 'package:movie_show_utilites/movie_show_utilites.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../controllers/data_controller/person_room_controller.dart';
-import '../../../../utils/constants.dart';
-import '../../../../utils/urls.dart';
 import '../../../widgets/list_item/list_image_widget.dart';
 
 class PersonalImages extends StatelessWidget {
@@ -20,15 +20,15 @@ class PersonalImages extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: SizedBox(
-            height: Constances.listHeight,
+            height: MSConstances.listHeight,
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: list?.length ?? 0,
               itemBuilder: (context, index) => ListImageWidget(
                 list?[index].filePath != null
-                    ? Urls.getImageUrl(list![index].filePath!)
-                    : Urls.noPosterUrl,
+                    ? EndPoints.getImageUrl(list![index].filePath!)
+                    : EndPoints.noPosterUrl,
                 border: true,
               ),
             ),

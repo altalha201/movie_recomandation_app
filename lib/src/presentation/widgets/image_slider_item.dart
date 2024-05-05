@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:model/model.dart';
+import 'package:movie_show_api/movie_show_api.dart';
+import 'package:navigate/navigate.dart';
 
-import '../../models/list_item/media_model.dart';
-import '../../utils/navigation_helper.dart';
-import '../../utils/urls.dart';
 import '../screens/details_screen/details_screen.dart';
 import 'cards/ratting_widget.dart';
 
@@ -45,7 +45,7 @@ class ImageSliderItem extends StatelessWidget {
   }
 
   void onTap(BuildContext context) {
-    NavigationHelper.push(
+    Navigate.push(
       context,
       DetailsScreen(
         contentType: item.mediaType ?? "none",
@@ -58,8 +58,8 @@ class ImageSliderItem extends StatelessWidget {
     return BoxDecoration(
       image: DecorationImage(
         image: NetworkImage(item.posterPath != null
-            ? Urls.getImageUrl(item.posterPath!)
-            : Urls.noPosterUrl),
+            ? EndPoints.getImageUrl(item.posterPath!)
+            : EndPoints.noPosterUrl),
         fit: BoxFit.fill,
         colorFilter: const ColorFilter.mode(
           Colors.black45,

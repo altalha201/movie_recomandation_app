@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../models/person/person_details_model.dart';
-import '../../models/list_item/person_model.dart';
-import '../../services/api_services.dart';
-import '../../utils/urls.dart';
+import 'package:model/model.dart';
+import 'package:movie_show_api/movie_show_api.dart';
 
 class PersonRoomController extends ChangeNotifier {
   final List<PersonModel> _populer = [];
@@ -18,7 +15,7 @@ class PersonRoomController extends ChangeNotifier {
   String get profileImageUrl => _profileImageUrl;
 
   Future<void> getPopulerList() async {
-    final response = await ApiServices.getRequest(Urls.personUrls("popular"));
+    final response = await ApiServices.getRequest(EndPoints.personUrls("popular"));
     if (response.success) {
       _populer.clear();
       List ls = response.body?['results'] ?? [];
@@ -33,15 +30,15 @@ class PersonRoomController extends ChangeNotifier {
     _pageLoading = true;
     notifyListeners();
     final responses =
-        await ApiServices.getRequest(Urls.personUrls(id.toString()));
+        await ApiServices.getRequest(EndPoints.personUrls(id.toString()));
 
     if (responses.success) {
       _pageDetails = PersonDetailsModel.fromJson(responses.body?["person"]);
       if (_pageDetails.images?.isNotEmpty ?? false) {
         _profileImageUrl =
-            Urls.getImageUrl(_pageDetails.images!.first.filePath!);
+            EndPoints.getImageUrl(_pageDetails.images!.first.filePath!);
       } else {
-        _profileImageUrl = Urls.noPosterUrl;
+        _profileImageUrl = EndPoints.noPosterUrl;
       }
     }
 

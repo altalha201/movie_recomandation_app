@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../models/list_item/serise_model.dart';
-import '../../services/api_services.dart';
-import '../../utils/urls.dart';
+import 'package:model/model.dart';
+import 'package:movie_show_api/movie_show_api.dart';
 
 class SeriseRoomController extends ChangeNotifier {
   bool _loadingScreen = false;
@@ -21,7 +19,7 @@ class SeriseRoomController extends ChangeNotifier {
 
   Future<void> getAiringToday() async {
     final response = await ApiServices.getRequest(
-      Urls.tvUrl("airing_today"),
+      EndPoints.tvUrl("airing_today"),
     );
 
     if (response.success) {
@@ -37,7 +35,7 @@ class SeriseRoomController extends ChangeNotifier {
 
   Future<void> getOnTheAir() async {
     final response = await ApiServices.getRequest(
-      Urls.tvUrl("on_the_air"),
+      EndPoints.tvUrl("on_the_air"),
     );
 
     if (response.success) {
@@ -53,7 +51,7 @@ class SeriseRoomController extends ChangeNotifier {
 
   Future<void> getPopular() async {
     final response = await ApiServices.getRequest(
-      Urls.tvUrl("popular"),
+      EndPoints.tvUrl("popular"),
     );
 
     if (response.success) {
@@ -69,7 +67,7 @@ class SeriseRoomController extends ChangeNotifier {
 
   Future<void> getTopRated() async {
     final response = await ApiServices.getRequest(
-      Urls.tvUrl("top_rated"),
+      EndPoints.tvUrl("top_rated"),
     );
 
     if (response.success) {
