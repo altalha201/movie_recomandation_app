@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../error_screen/error_screen.dart';
-import '../movie_details_screen/movie_details_screen.dart';
-import '../person_details_screen/person_details_screen.dart';
-import '../serise_details_screen/serise_details_screen.dart';
+import '../../../utils/exports.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({

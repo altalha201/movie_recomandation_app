@@ -2,17 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../controllers/data_controller/movie_room_controller.dart';
-import '../../../../../controllers/data_controller/person_room_controller.dart';
-import '../../../../../controllers/data_controller/serise_room_controller.dart';
-import '../../../../../controllers/data_controller/tranding_controllers.dart';
-import '../../../../widgets/app_progress_indicator.dart';
-import '../../../../widgets/home_screen_title_widget.dart';
-import '../../../../widgets/list_item/tranding_list_widget.dart';
-import '../../../../widgets/list_views/movie_list_view.dart';
-import '../../../../widgets/list_views/person_list_view.dart';
-import '../../../../widgets/list_views/serise_list_view.dart';
-import '../../../../widgets/title_widget.dart';
+import '../../../../../utils/exports.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});

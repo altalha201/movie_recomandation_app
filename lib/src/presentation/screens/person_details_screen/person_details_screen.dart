@@ -2,16 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_show_utilites/movie_show_utilites.dart';
 import 'package:provider/provider.dart';
 
-import '../../../controllers/data_controller/person_room_controller.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../../widgets/table/app_table.dart';
-import '../../widgets/title_widget.dart';
-import '../error_screen/error_screen.dart';
-import 'utils/genarate_table_data.dart';
-import 'widgets/cast_in.dart';
-import 'widgets/personal_images.dart';
-import 'widgets/personal_short_details.dart';
-import 'widgets/social_medias.dart';
+import '../../../utils/exports.dart';
 
 class PersonDetailsScreen extends StatefulWidget {
   final int id;

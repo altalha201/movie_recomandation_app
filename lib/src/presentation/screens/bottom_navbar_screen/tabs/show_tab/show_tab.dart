@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_recomandation_app/src/presentation/widgets/app_progress_indicator.dart';
-import 'package:movie_recomandation_app/src/utils/providers.dart';
+
+import '../../../../../utils/exports.dart';
 
 class ShowTab extends StatefulWidget {
   const ShowTab({super.key});

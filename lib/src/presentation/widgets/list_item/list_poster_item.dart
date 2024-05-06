@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navigate/navigate.dart';
 
-import '../../screens/details_screen/details_screen.dart';
-import '../cards/ratting_widget.dart';
-import 'list_image_widget.dart';
+import '../../../utils/exports.dart';
 
 class ListPosterItem extends StatelessWidget {
   const ListPosterItem({

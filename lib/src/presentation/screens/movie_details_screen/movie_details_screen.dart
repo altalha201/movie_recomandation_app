@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../controllers/data_controller/movie_room_controller.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../error_screen/error_screen.dart';
+import '../../../utils/exports.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   final int id;

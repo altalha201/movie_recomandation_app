@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:model/model.dart';
 
-import 'data_cell.dart';
-import 'title_cell.dart';
+import '../../../utils/exports.dart';
 
 class AppTable extends StatelessWidget {
   const AppTable({

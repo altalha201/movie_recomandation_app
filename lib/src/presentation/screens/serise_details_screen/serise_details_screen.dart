@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../controllers/data_controller/serise_room_controller.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../error_screen/error_screen.dart';
+import '../../../utils/exports.dart';
 
 class SeriseDetailsScreen extends StatefulWidget {
   final int id;
@@ -26,6 +24,7 @@ class _SeriseDetailsScreenState extends State<SeriseDetailsScreen> {
     );
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<SeriseRoomController>(

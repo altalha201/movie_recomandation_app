@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../../../controllers/ui_controller/navbar_controller.dart';
-import '../../widgets/background.dart';
+import '../../../utils/exports.dart';
 
 class BottomNavbarScreen extends StatelessWidget {
   const BottomNavbarScreen({super.key});

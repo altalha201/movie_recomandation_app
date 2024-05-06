@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../presentation/screens/bottom_navbar_screen/tabs/home_tab/home_tab.dart';
-import '../../presentation/screens/bottom_navbar_screen/tabs/search_tab/search_tab.dart';
-import '../../presentation/screens/bottom_navbar_screen/tabs/show_tab/show_tab.dart';
+import '../../utils/exports.dart';
 
 class NavbarController extends ChangeNotifier{
   int _currentTabIndex = 0;

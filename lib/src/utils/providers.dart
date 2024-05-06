@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import '../controllers/ui_controller/date_frame_selactor_controller.dart';
-import '../controllers/data_controller/movie_room_controller.dart';
-import '../controllers/data_controller/person_room_controller.dart';
-import '../controllers/data_controller/search_function_controller.dart';
-import '../controllers/data_controller/serise_room_controller.dart';
-import '../controllers/data_controller/tranding_controllers.dart';
-import '../controllers/ui_controller/navbar_controller.dart';
+import 'exports.dart';
 
 class Providers {
   static List<SingleChildWidget> all = [

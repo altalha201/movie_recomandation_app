@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../controllers/data_controller/search_function_controller.dart';
-import '../../../../widgets/app_progress_indicator.dart';
-import '../../../../widgets/list_item/search_list_item.dart';
+import '../../../../../utils/exports.dart';
 
 class SearchTab extends StatefulWidget {
   const SearchTab({super.key});

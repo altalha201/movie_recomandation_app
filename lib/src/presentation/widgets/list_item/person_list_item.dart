@@ -3,8 +3,7 @@ import 'package:model/model.dart';
 import 'package:movie_show_api/movie_show_api.dart';
 import 'package:navigate/navigate.dart';
 
-import '../../screens/details_screen/details_screen.dart';
-import 'list_image_widget.dart';
+import '../../../utils/exports.dart';
 
 class PersonListItem extends StatelessWidget {
   const PersonListItem(this.person, {super.key});

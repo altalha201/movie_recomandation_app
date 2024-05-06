@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navigate/navigate.dart';
 
-import '../../../utils/providers.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../bottom_navbar_screen/bottom_navbar_screen.dart';
+import '../../../utils/exports.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

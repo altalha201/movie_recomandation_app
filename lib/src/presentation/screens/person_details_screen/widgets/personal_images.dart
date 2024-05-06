@@ -3,8 +3,7 @@ import 'package:movie_show_api/movie_show_api.dart';
 import 'package:movie_show_utilites/movie_show_utilites.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../controllers/data_controller/person_room_controller.dart';
-import '../../../widgets/list_item/list_image_widget.dart';
+import '../../../../utils/exports.dart';
 
 class PersonalImages extends StatelessWidget {
   const PersonalImages({super.key});
