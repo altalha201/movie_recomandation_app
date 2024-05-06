@@ -17,3 +17,10 @@ enum SeriseList {
   final String name;
   const SeriseList(this.name);
 }
+
+enum TrandingTimeFrame {
+  day,
+  week;
+
+  String get name => toString().split(".").last;
+}

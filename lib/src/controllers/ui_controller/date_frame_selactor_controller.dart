@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:model/model.dart';
 import 'package:provider/provider.dart';
 
 import '../data_controller/tranding_controllers.dart';
@@ -17,7 +18,7 @@ class DateFrameSelectorController extends ChangeNotifier {
     );
     switch (_value) {
       case 2:
-        trandingController.getTrandings(timeWindow: "week");
+        trandingController.getTrandings(timeWindow: TrandingTimeFrame.week);
         break;
       case 1:
       default:

@@ -17,7 +17,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     WidgetsFlutterBinding.ensureInitialized()
         .addPostFrameCallback((timeStamp) async {
-   
       await Future.wait(Providers.onLoadUp(context)).then(
         (value) {
           Navigate.pushAndRemoveUntil(

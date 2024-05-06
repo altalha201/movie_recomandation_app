@@ -52,7 +52,9 @@ class Providers {
           context,
           listen: false,
         ).getTrandings(),
-        //
+      ];
+
+  static Iterable<Future> onShow(BuildContext context) => [
         Provider.of<MovieRoomController>(
           context,
           listen: false,

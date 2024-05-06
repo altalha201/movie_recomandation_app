@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:model/model.dart';
-import 'package:movie_show_api/movie_show_api.dart';
-import 'package:movie_show_utilites/movie_show_utilites.dart';
+
+import '../../repository/tranding_repository.dart';
 
 class TrandingController extends ChangeNotifier {
-  final List<TrandingModel> _trandingList = [];
+  List<TrandingModel> _trandingList = [];
   bool _isLoading = false;
 
   List<TrandingModel> get trandingList => _trandingList;
   bool get isLoading => _isLoading;
 
-  Future<void> getTrandings({String timeWindow = "day"}) async {
+  Future<void> getTrandings(
+      {TrandingTimeFrame timeWindow = TrandingTimeFrame.day}) async {
     _isLoading = true;
     _trandingList.clear();
     notifyListeners();
-    var res = await ApiServices.getRequest(EndPoints.trainding(timeWindow));
-    if (res.success) {
-      var currentJsonList = res.body?["tranding"] ?? [];
-      for (var element in currentJsonList) {
-        _trandingList.add(TrandingModel.fromJson(element));
-      }
-    } else {
-      MSToast.showToast("Something went wrong");
-    }
+    _trandingList =
+        await TrandingRepository.getTrandingList(timeFrame: timeWindow);
     _isLoading = false;
     notifyListeners();
   }
