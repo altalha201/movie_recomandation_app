@@ -6,6 +6,7 @@ import '../../../controllers/data_controller/person_room_controller.dart';
 import '../../widgets/app_progress_indicator.dart';
 import '../../widgets/table/app_table.dart';
 import '../../widgets/title_widget.dart';
+import '../error_screen/error_screen.dart';
 import 'utils/genarate_table_data.dart';
 import 'widgets/cast_in.dart';
 import 'widgets/personal_images.dart';
@@ -42,7 +43,11 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
             if (value.pageLoading) {
               return const AppProgressIndicator();
             } else {
-              return const _PersonDetailsView();
+              if (value.currentPage.isNull ?? false) {
+                return const ErrorScreen();
+              } else {
+                return const _PersonDetailsView();
+              }
             }
           },
         ),

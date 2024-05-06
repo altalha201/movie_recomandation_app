@@ -19,7 +19,7 @@ class MovieDetailsModel {
   String? tagline;
   int? votePercentage;
   List<ImageModel>? images;
-  List<VedioModel>? videos;
+  List<VideoModel>? videos;
   List<MediaModel>? similar;
   List<MediaModel>? recommendations;
 
@@ -82,9 +82,9 @@ class MovieDetailsModel {
       });
     }
     if (json['videos'] != null) {
-      videos = <VedioModel>[];
+      videos = <VideoModel>[];
       json['videos'].forEach((v) {
-        videos!.add(VedioModel.fromJson(v));
+        videos!.add(VideoModel.fromJson(v));
       });
     }
     if (json['similar'] != null) {

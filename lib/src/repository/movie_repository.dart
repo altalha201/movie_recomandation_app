@@ -5,7 +5,7 @@ import 'package:navigate/navigate.dart';
 class MovieRepository {
   const MovieRepository();
 
-  static Future<List<MovieModel>> getMovies(MovieList movieList) async {
+  static Future<List<MovieModel>> getMovies(MovieCetagories movieList) async {
     final hasConnection = await Connection.hasInternet();
     if (hasConnection) {
       return await _getListFromAPI(movieList);
@@ -34,9 +34,11 @@ class MovieRepository {
     }
   }
 
-  static Future<List<MovieModel>> _getListFromAPI(MovieList chatagory) async {
+  static Future<List<MovieModel>> _getListFromAPI(
+      MovieCetagories chatagory) async {
     var perams = <String, dynamic>{};
-    if (chatagory == MovieList.nowPlaying || chatagory == MovieList.upcoming) {
+    if (chatagory == MovieCetagories.nowPlaying ||
+        chatagory == MovieCetagories.upcoming) {
       perams['region'] = 'bd';
     }
     final response = await ApiServices.getRequest(

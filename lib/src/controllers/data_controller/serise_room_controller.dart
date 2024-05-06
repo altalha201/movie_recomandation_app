@@ -1,88 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:model/model.dart';
-import 'package:movie_show_api/movie_show_api.dart';
+
+import '../../repository/serise_repository.dart';
 
 class SeriseRoomController extends ChangeNotifier {
   bool _loadingScreen = false;
 
-  final List<SeriseModel> _onAir = [],
+  SeriesDetailsModel _currentPage = SeriesDetailsModel(isNull: true);
+
+  List<SeriesModel> _onAir = [],
       _topRated = [],
       _airingToday = [],
       _populer = [];
 
   bool get loadingScreen => _loadingScreen;
+  SeriesDetailsModel get currentPage => _currentPage;
 
-  List<SeriseModel> get onAirSerise => _onAir;
-  List<SeriseModel> get topSerise => _topRated;
-  List<SeriseModel> get airingToday => _airingToday;
-  List<SeriseModel> get popular => _populer;
+  List<SeriesModel> get onAirSerise => _onAir;
+  List<SeriesModel> get topSerise => _topRated;
+  List<SeriesModel> get airingToday => _airingToday;
+  List<SeriesModel> get popular => _populer;
 
   Future<void> getAiringToday() async {
-    final response = await ApiServices.getRequest(
-      EndPoints.tvUrl("airing_today"),
+    _airingToday = await SeriesRepository.getListOfSeries(
+      SeriesCetagories.airingToday,
     );
-
-    if (response.success) {
-      _airingToday.clear();
-      List ls = response.body?["results"] ?? [];
-      for (var element in ls) {
-        _airingToday.add(SeriseModel.fromJson(element));
-      }
-    }
 
     notifyListeners();
   }
 
   Future<void> getOnTheAir() async {
-    final response = await ApiServices.getRequest(
-      EndPoints.tvUrl("on_the_air"),
+    _onAir = await SeriesRepository.getListOfSeries(
+      SeriesCetagories.onTheAir,
     );
-
-    if (response.success) {
-      _onAir.clear();
-      List ls = response.body?["results"] ?? [];
-      for (var element in ls) {
-        _onAir.add(SeriseModel.fromJson(element));
-      }
-    }
 
     notifyListeners();
   }
 
   Future<void> getPopular() async {
-    final response = await ApiServices.getRequest(
-      EndPoints.tvUrl("popular"),
+    _populer = await SeriesRepository.getListOfSeries(
+      SeriesCetagories.popular,
     );
-
-    if (response.success) {
-      _populer.clear();
-      List ls = response.body?["results"] ?? [];
-      for (var element in ls) {
-        _populer.add(SeriseModel.fromJson(element));
-      }
-    }
-
     notifyListeners();
   }
 
   Future<void> getTopRated() async {
-    final response = await ApiServices.getRequest(
-      EndPoints.tvUrl("top_rated"),
+    _topRated = await SeriesRepository.getListOfSeries(
+      SeriesCetagories.topRated,
     );
-
-    if (response.success) {
-      _topRated.clear();
-      List ls = response.body?["results"] ?? [];
-      for (var element in ls) {
-        _topRated.add(SeriseModel.fromJson(element));
-      }
-    }
 
     notifyListeners();
   }
 
   Future<void> getInfo(int id) async {
     _loadingScreen = true;
+    notifyListeners();
+    _currentPage = await SeriesRepository.getSeriesByID(id);
+    _loadingScreen = false;
     notifyListeners();
   }
 }

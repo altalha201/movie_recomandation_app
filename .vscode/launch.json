@@ -1,0 +1,106 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "movie_recomandation_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "movie_recomandation_app (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "movie_recomandation_app (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "model",
+            "cwd": "packages/model",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "model (profile mode)",
+            "cwd": "packages/model",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "model (release mode)",
+            "cwd": "packages/model",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "movie_show_api",
+            "cwd": "packages/movie_show_api",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "movie_show_api (profile mode)",
+            "cwd": "packages/movie_show_api",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "movie_show_api (release mode)",
+            "cwd": "packages/movie_show_api",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "movie_show_utilites",
+            "cwd": "packages/movie_show_utilites",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "movie_show_utilites (profile mode)",
+            "cwd": "packages/movie_show_utilites",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "movie_show_utilites (release mode)",
+            "cwd": "packages/movie_show_utilites",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "navigate",
+            "cwd": "packages/navigate",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "navigate (profile mode)",
+            "cwd": "packages/navigate",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "navigate (release mode)",
+            "cwd": "packages/navigate",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

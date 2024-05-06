@@ -18,6 +18,7 @@ class ErrorScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
               ),
               Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   const Icon(
                     FontAwesomeIcons.circleXmark,
@@ -27,7 +28,9 @@ class ErrorScreen extends StatelessWidget {
                   const SizedBox(width: 12),
                   Text(
                     "Bad Request 400\nItem not found",
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),

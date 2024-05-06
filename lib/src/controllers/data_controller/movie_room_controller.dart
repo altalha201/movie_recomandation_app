@@ -22,24 +22,24 @@ class MovieRoomController extends ChangeNotifier {
   List<MovieModel> get upcoming => _upcomingList;
 
   Future<void> getNowPlaying() async {
-    _nowPlaying = await MovieRepository.getMovies(MovieList.nowPlaying);
+    _nowPlaying = await MovieRepository.getMovies(MovieCetagories.nowPlaying);
     notifyListeners();
   }
 
   Future<void> getUpcoming() async {
-    _upcomingList = await MovieRepository.getMovies(MovieList.upcoming);
+    _upcomingList = await MovieRepository.getMovies(MovieCetagories.upcoming);
 
     notifyListeners();
   }
 
   Future<void> getPopular() async {
-    _popularList = await MovieRepository.getMovies(MovieList.popular);
+    _popularList = await MovieRepository.getMovies(MovieCetagories.popular);
 
     notifyListeners();
   }
 
   Future<void> getTopRated() async {
-    _topRatedList = await MovieRepository.getMovies(MovieList.topRated);
+    _topRatedList = await MovieRepository.getMovies(MovieCetagories.topRated);
 
     notifyListeners();
   }

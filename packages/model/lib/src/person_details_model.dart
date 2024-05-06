@@ -2,6 +2,7 @@ import 'model.dart';
 
 class PersonDetailsModel {
   int? id;
+  bool? isNull;
   String? name;
   List<String>? alsoKnownAs;
   String? biography;
@@ -16,6 +17,7 @@ class PersonDetailsModel {
 
   PersonDetailsModel({
     this.id,
+    this.isNull = false,
     this.name,
     this.alsoKnownAs,
     this.biography,
@@ -35,6 +37,7 @@ class PersonDetailsModel {
 
   PersonDetailsModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    isNull = false;
     name = json['name'];
     alsoKnownAs = json['also_known_as'].cast<String>();
     biography = json['biography'];

@@ -1,4 +1,4 @@
-class SeriseModel {
+class SeriesModel {
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -13,7 +13,7 @@ class SeriseModel {
   String? name;
   int? votePercentage;
 
-  SeriseModel(
+  SeriesModel(
       {this.adult,
       this.backdropPath,
       this.genreIds,
@@ -28,7 +28,7 @@ class SeriseModel {
       this.name,
       this.votePercentage});
 
-  SeriseModel.fromJson(Map<String, dynamic> json) {
+  SeriesModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'].cast<int>();

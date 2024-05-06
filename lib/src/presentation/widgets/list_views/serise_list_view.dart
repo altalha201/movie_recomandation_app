@@ -11,7 +11,7 @@ class SeriseListView extends StatelessWidget {
     required this.serises,
   });
 
-  final List<SeriseModel> serises;
+  final List<SeriesModel> serises;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,8 @@ class SeriseListView extends StatelessWidget {
       padding: MSConstances.listMargin,
       child: SizedBox(
         height: MSConstances.listHeight,
-        child: Builder(
-          builder: (context) {
-            if (serises.isEmpty) {
+        child: Builder(builder: (context) {
+          if (serises.isEmpty) {
             return Center(
               child: Text(
                 "Nothing to Show",
@@ -31,22 +30,21 @@ class SeriseListView extends StatelessWidget {
               ),
             );
           }
-            return ListView.builder(
-              padding: EdgeInsets.zero,
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: serises.length,
-              itemBuilder: (context, index) => ListPosterItem(
-                imageUrl: serises[index].posterPath != null
-                    ? EndPoints.getImageUrl(serises[index].posterPath!)
-                    : EndPoints.noPosterUrl,
-                mediaType: "tv",
-                id: serises[index].id ?? -1,
-                ratting: (serises[index].votePercentage ?? 0) / 10.0,
-              ),
-            );
-          }
-        ),
+          return ListView.builder(
+            padding: EdgeInsets.zero,
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemCount: serises.length,
+            itemBuilder: (context, index) => ListPosterItem(
+              imageUrl: serises[index].posterPath != null
+                  ? EndPoints.getImageUrl(serises[index].posterPath!)
+                  : EndPoints.noPosterUrl,
+              mediaType: "tv",
+              id: serises[index].id ?? -1,
+              ratting: (serises[index].votePercentage ?? 0) / 10.0,
+            ),
+          );
+        }),
       ),
     );
   }
