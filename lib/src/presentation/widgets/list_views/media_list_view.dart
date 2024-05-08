@@ -5,19 +5,14 @@ import 'package:movie_show_utilites/movie_show_utilites.dart';
 
 import '../../../utils/exports.dart';
 
-class MovieListView extends StatelessWidget {
-  const MovieListView({
-    super.key,
-    required this.movies,
-    required this.title,
-  });
-
+class MediaListView extends StatelessWidget {
+  final List<MediaModel> medias;
   final String title;
-  final List<MovieModel> movies;
+  const MediaListView({super.key, required this.medias, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    if (movies.isEmpty) {
+    if (medias.isEmpty) {
       return const SizedBox.shrink();
     }
     return Column(
@@ -33,14 +28,14 @@ class MovieListView extends StatelessWidget {
               padding: EdgeInsets.zero,
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              itemCount: movies.length,
+              itemCount: medias.length,
               itemBuilder: (context, index) => ListPosterItem(
-                imageUrl: movies[index].posterPath != null
-                    ? EndPoints.getImageUrl(movies[index].posterPath!)
+                imageUrl: medias[index].posterPath != null
+                    ? EndPoints.getImageUrl(medias[index].posterPath!)
                     : EndPoints.noPosterUrl,
-                mediaType: "movie",
-                id: movies[index].id ?? -1,
-                ratting: (movies[index].votePercentage ?? 0) / 10.0,
+                mediaType: medias[index].mediaType ?? "",
+                id: medias[index].id ?? -1,
+                ratting: (medias[index].votePercentage ?? 0) / 10.0,
               ),
             ),
           ),

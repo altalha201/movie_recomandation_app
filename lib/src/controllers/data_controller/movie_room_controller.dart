@@ -51,4 +51,43 @@ class MovieRoomController extends ChangeNotifier {
     _loadingScreen = false;
     notifyListeners();
   }
+
+  String getCurrentTraillerKey() {
+    var traillerVideo = _currentMovie.videos
+        ?.firstWhere((element) => element.type == "Trailer");
+
+    traillerVideo ??=
+        _currentMovie.videos?.firstWhere((element) => element.type == 'Teaser');
+
+    return traillerVideo?.key ?? "";
+  }
+
+  List<String> getGeners() {
+    List<String> lst = [];
+    _currentMovie.genres?.forEach((element) {
+      lst.add(element.name ?? "");
+    });
+    return lst;
+  }
+
+  String getCurrentProductionCompanies() {
+    List<String> companies = [];
+    _currentMovie.productionCompanies?.forEach((element) {
+      companies.add(element.name ?? "");
+    });
+    if (companies.isEmpty) {
+      return "";
+    } else {
+      return companies.join(", ");
+    }
+  }
+
+  bool emptyShow() {
+    if (_popularList.isEmpty &&
+        _topRatedList.isEmpty &&
+        _upcomingList.isEmpty) {
+      return true;
+    }
+    return false;
+  }
 }

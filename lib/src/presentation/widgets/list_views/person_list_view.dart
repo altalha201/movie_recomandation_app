@@ -2,32 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:model/model.dart';
 import 'package:movie_show_utilites/movie_show_utilites.dart';
 
-import '../list_item/person_list_item.dart';
+import '../../../utils/exports.dart';
 
 class PersonListView extends StatelessWidget {
-  const PersonListView({super.key, required this.persons});
+  const PersonListView({
+    super.key,
+    required this.persons,
+    required this.title,
+  });
 
+  final String title;
   final List<PersonModel> persons;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: MSConstances.listMargin,
-      child: SizedBox(
-        height: MSConstances.listHeight,
-        child: Builder(
-          builder: (context) {
-            if (persons.isEmpty) {
-            return Center(
-              child: Text(
-                "Nothing to Show",
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.white,
-                    ),
-              ),
-            );
-          }
-            return ListView.builder(
+    if (persons.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TitleWidget(title),
+        Padding(
+          padding: MSConstances.listMargin,
+          child: SizedBox(
+            height: MSConstances.listHeight,
+            child: ListView.builder(
               padding: EdgeInsets.zero,
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
@@ -35,10 +36,11 @@ class PersonListView extends StatelessWidget {
               itemBuilder: (context, index) => PersonListItem(
                 persons[index],
               ),
-            );
-          }
+            ),
+          ),
         ),
-      ),
+        const SizedBox(height: 16),
+      ],
     );
   }
 }

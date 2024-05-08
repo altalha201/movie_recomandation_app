@@ -14,5 +14,7 @@ class EndPoints {
   static String trainding(String timeWindow) =>
       "$_baseUrl/tranding/$timeWindow";
 
+  static String youtubeThumnail(String videoKey) => "https://img.youtube.com/vi/$videoKey/hqdefault.jpg";
+
   static String getImageUrl(String imagUrl) => "$_baseUrl/images$imagUrl";
 }

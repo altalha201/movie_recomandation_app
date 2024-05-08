@@ -16,13 +16,13 @@ class TagWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
+      padding: EdgeInsets.symmetric(
         horizontal: 8.0,
-        vertical: 2.0,
+        vertical: learge ? 2.0 : 4.0,
       ),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(2),
+        borderRadius: BorderRadius.circular(4),
       ),
       child: Text(
         text,
@@ -39,7 +39,7 @@ class TagWidget extends StatelessWidget {
             fontWeight: FontWeight.w600,
           );
     } else {
-      return Theme.of(context).textTheme.titleMedium?.copyWith(
+      return Theme.of(context).textTheme.bodyLarge?.copyWith(
             color: Colors.white,
             fontWeight: FontWeight.w600,
           );

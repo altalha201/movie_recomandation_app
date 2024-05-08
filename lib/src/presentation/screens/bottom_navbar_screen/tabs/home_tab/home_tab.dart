@@ -21,21 +21,9 @@ class HomeTab extends StatelessWidget {
           SizedBox(
             height: 24,
           ),
-          TitleWidget("In Theaters (BD)"),
           _NowPlayingMovies(),
-          SizedBox(
-            height: 16,
-          ),
-          TitleWidget("Airing Today"),
           _AiringToday(),
-          SizedBox(
-            height: 16,
-          ),
-          TitleWidget("Populer Persons"),
           _PopularPersonsList(),
-          SizedBox(
-            height: 8,
-          ),
         ],
       ),
     );
@@ -49,7 +37,10 @@ class _PopularPersonsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PersonRoomController>(
       builder: (context, personRoom, _) {
-        return PersonListView(persons: personRoom.populer);
+        return PersonListView(
+          persons: personRoom.populer,
+          title: 'Popular Persons',
+        );
       },
     );
   }
@@ -62,7 +53,10 @@ class _NowPlayingMovies extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<MovieRoomController>(
       builder: (context, controller, _) {
-        return MovieListView(movies: controller.nowPlaying);
+        return MovieListView(
+          movies: controller.nowPlaying,
+          title: 'In Theaters (BD)',
+        );
       },
     );
   }
@@ -75,7 +69,10 @@ class _AiringToday extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SeriseRoomController>(
       builder: (context, controller, _) {
-        return SeriseListView(serises: controller.airingToday);
+        return SeriseListView(
+          serises: controller.airingToday,
+          title: 'Airing Today',
+        );
       },
     );
   }
@@ -96,11 +93,11 @@ class _TrandingSlider extends StatelessWidget {
         }
         return CarouselSlider(
           items: [
-            ...trandingController.trandingList.map(
-              (trandingItem) => TrandingListWidget(
-                data: trandingItem,
+            for (int i = 0; i < trandingController.trandingList.length; i++)
+              TrandingListWidget(
+                data: trandingController.trandingList.elementAt(i),
+                index: i + 1,
               ),
-            ),
           ],
           options: CarouselOptions(
             viewportFraction: 0.6,

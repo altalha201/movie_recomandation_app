@@ -5,7 +5,6 @@ class PersonModel {
   String? knownForDepartment;
   String? name;
   String? originalName;
-  double? popularity;
   String? profilePath;
 
   PersonModel(
@@ -15,7 +14,6 @@ class PersonModel {
       this.knownForDepartment,
       this.name,
       this.originalName,
-      this.popularity,
       this.profilePath});
 
   PersonModel.fromJson(Map<String, dynamic> json) {
@@ -25,7 +23,6 @@ class PersonModel {
     knownForDepartment = json['known_for_department'];
     name = json['name'];
     originalName = json['original_name'];
-    popularity = json['popularity'];
     profilePath = json['profile_path'];
   }
 
@@ -37,7 +34,6 @@ class PersonModel {
     data['known_for_department'] = knownForDepartment;
     data['name'] = name;
     data['original_name'] = originalName;
-    data['popularity'] = popularity;
     data['profile_path'] = profilePath;
     return data;
   }

@@ -59,4 +59,13 @@ class SeriseRoomController extends ChangeNotifier {
     _loadingScreen = false;
     notifyListeners();
   }
+
+  bool emptyShow() {
+    if (_populer.isEmpty &&
+        _topRated.isEmpty &&
+        _onAir.isEmpty) {
+      return true;
+    }
+    return false;
+  }
 }

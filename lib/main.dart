@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_show_utilites/movie_show_utilites.dart';
 import 'package:provider/provider.dart';
 
-import 'src/presentation/screens/splash_screen/splash_screen.dart';
-import 'src/utils/providers.dart';
+import 'src/utils/exports.dart';
 
 
 void main() async {

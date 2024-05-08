@@ -27,20 +27,22 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Consumer<PersonRoomController>(
-          builder: (context, value, child) {
-            if (value.pageLoading) {
-              return const AppProgressIndicator();
-            } else {
-              if (value.currentPage.isNull ?? false) {
-                return const ErrorScreen();
+    return Background(
+      child: Scaffold(
+        body: SafeArea(
+          child: Consumer<PersonRoomController>(
+            builder: (context, value, child) {
+              if (value.pageLoading) {
+                return const AppProgressIndicator();
               } else {
-                return const _PersonDetailsView();
+                if (value.currentPage.isNull ?? false) {
+                  return const ErrorScreen();
+                } else {
+                  return const _PersonDetailsView();
+                }
               }
-            }
-          },
+            },
+          ),
         ),
       ),
     );

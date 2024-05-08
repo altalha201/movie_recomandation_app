@@ -22,6 +22,8 @@ export '../presentation/screens/details_screen/details_screen.dart';
 export '../presentation/screens/error_screen/error_screen.dart';
 
 export '../presentation/screens/movie_details_screen/movie_details_screen.dart';
+export '../presentation/screens/movie_details_screen/widgets/movie_table_section.dart';
+export '../presentation/screens/movie_details_screen/widgets/poster_and_title.dart';
 
 export '../presentation/screens/person_details_screen/person_details_screen.dart';
 export '../presentation/screens/person_details_screen/utils/genarate_table_data.dart';
@@ -38,8 +40,8 @@ export '../presentation/screens/splash_screen/splash_screen.dart';
 export '../presentation/widgets/app_progress_indicator.dart';
 export '../presentation/widgets/background.dart';
 export '../presentation/widgets/home_screen_title_widget.dart';
-export '../presentation/widgets/image_slider_item.dart';
 export '../presentation/widgets/title_widget.dart';
+export '../presentation/widgets/video_player.dart';
 
 export '../presentation/widgets/button/favourite_button.dart';
 
@@ -53,6 +55,7 @@ export '../presentation/widgets/list_item/person_list_item.dart';
 export '../presentation/widgets/list_item/search_list_item.dart';
 export '../presentation/widgets/list_item/tranding_list_widget.dart';
 
+export '../presentation/widgets/list_views/media_list_view.dart';
 export '../presentation/widgets/list_views/movie_list_view.dart';
 export '../presentation/widgets/list_views/person_list_view.dart';
 export '../presentation/widgets/list_views/serise_list_view.dart';

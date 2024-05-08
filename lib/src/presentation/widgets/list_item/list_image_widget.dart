@@ -9,7 +9,8 @@ class ListImageWidget extends StatelessWidget {
     this.borderColor,
     this.onPressed,
     this.childAlignment,
-    this.child, this.padding,
+    this.child,
+    this.padding,
   });
 
   final String imagePath;

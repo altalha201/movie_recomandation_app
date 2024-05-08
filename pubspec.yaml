@@ -25,6 +25,7 @@ dependencies:
     path: packages/movie_show_utilites
   navigate:
     path: packages/navigate
+  youtube_player_flutter: ^9.0.1
 
 dev_dependencies:
   flutter_test:

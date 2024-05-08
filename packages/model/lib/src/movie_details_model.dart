@@ -18,7 +18,6 @@ class MovieDetailsModel {
   String? title;
   String? tagline;
   int? votePercentage;
-  List<ImageModel>? images;
   List<VideoModel>? videos;
   List<MediaModel>? similar;
   List<MediaModel>? recommendations;
@@ -40,7 +39,6 @@ class MovieDetailsModel {
     this.title,
     this.tagline,
     this.votePercentage,
-    this.images,
     this.videos,
     this.similar,
     this.recommendations,
@@ -75,12 +73,6 @@ class MovieDetailsModel {
     tagline = json['tagline'];
     votePercentage = json['vote_percentage'];
     isNull = false;
-    if (json['images'] != null) {
-      images = <ImageModel>[];
-      json['images'].forEach((v) {
-        images!.add(ImageModel.fromJson(v));
-      });
-    }
     if (json['videos'] != null) {
       videos = <VideoModel>[];
       json['videos'].forEach((v) {
@@ -124,9 +116,7 @@ class MovieDetailsModel {
     data['title'] = title;
     data['tagline'] = tagline;
     data['vote_percentage'] = votePercentage;
-    if (images != null) {
-      data['images'] = images!.map((v) => v.toJson()).toList();
-    }
+
     if (videos != null) {
       data['videos'] = videos!.map((v) => v.toJson()).toList();
     }

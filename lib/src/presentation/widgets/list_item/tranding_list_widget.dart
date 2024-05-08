@@ -8,9 +8,11 @@ import '../cards/percentage_widget.dart';
 
 class TrandingListWidget extends StatelessWidget {
   final TrandingModel data;
+  final int index;
   const TrandingListWidget({
     super.key,
     required this.data,
+    required this.index,
   });
 
   @override
@@ -40,10 +42,22 @@ class TrandingListWidget extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          alignment: Alignment.bottomRight,
-          padding: const EdgeInsets.all(16),
-          child: PercentageWidget(
-            percentage: data.votePercentage ?? 0,
+          alignment: Alignment.bottomCenter,
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "# $index",
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      color: Colors.amber,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              PercentageWidget(
+                percentage: data.votePercentage ?? 0,
+              ),
+            ],
           ),
         ),
       ),

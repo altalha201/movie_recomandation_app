@@ -26,7 +26,7 @@ class SearchModel {
     mediaType = json['media_type'];
     adult = json['adult'];
     name = json['name'];
-    popularity = json['popularity'];
+    popularity = double.parse(json['populariry'].toString());
     votePercentage = json['vote_percentage'];
     overview = json['overview'];
     posterPath = json['poster_path'];
