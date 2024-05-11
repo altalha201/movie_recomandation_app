@@ -1,3 +1,5 @@
+import 'package:model/model.dart';
+
 import 'model.dart';
 
 class MovieDetailsModel {
@@ -18,6 +20,7 @@ class MovieDetailsModel {
   String? title;
   String? tagline;
   int? votePercentage;
+  List<ImageModel>? images;
   List<VideoModel>? videos;
   List<MediaModel>? similar;
   List<MediaModel>? recommendations;
@@ -40,6 +43,7 @@ class MovieDetailsModel {
     this.tagline,
     this.votePercentage,
     this.videos,
+    this.images,
     this.similar,
     this.recommendations,
     this.isNull = false,
@@ -77,6 +81,12 @@ class MovieDetailsModel {
       videos = <VideoModel>[];
       json['videos'].forEach((v) {
         videos!.add(VideoModel.fromJson(v));
+      });
+    }
+    if (json['images'] != null) {
+      images = <ImageModel>[];
+      json['images'].forEach((v) {
+        images!.add(ImageModel.fromJson(v));
       });
     }
     if (json['similar'] != null) {
@@ -119,6 +129,9 @@ class MovieDetailsModel {
 
     if (videos != null) {
       data['videos'] = videos!.map((v) => v.toJson()).toList();
+    }
+    if (images != null) {
+      data['images'] = images!.map((v) => v.toJson()).toList();
     }
     if (similar != null) {
       data['similar'] = similar!.map((v) => v.toJson()).toList();

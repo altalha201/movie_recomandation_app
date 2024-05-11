@@ -54,6 +54,7 @@ class PosterandTitle extends StatelessWidget {
                           PercentageWidget(
                             percentage:
                                 provider.currentMovie.votePercentage ?? 0,
+                            backgroundColor: Colors.transparent,
                           ),
                           Expanded(
                             child: FavouriteButton(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie_recomandation_app/src/presentation/screens/images_view_screen/images_view_screen.dart';
 import 'package:movie_show_utilites/movie_show_utilites.dart';
+import 'package:navigate/navigate.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/exports.dart';
@@ -59,6 +61,7 @@ class _MovieView extends StatelessWidget {
             _Tags(),
             _MovieOverview(),
             MovieTableSection(),
+            _ImageSection(),
             _SimilerSection(),
             _RecommendationSection(),
           ],
@@ -67,6 +70,36 @@ class _MovieView extends StatelessWidget {
     );
   }
 }
+
+class _ImageSection extends StatelessWidget {
+  const _ImageSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Consumer<MovieRoomController>(builder: (context, provider, _) {
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          )),
+          onPressed: () {
+            Navigate.push(
+              context,
+              ImagesViewScreen(
+                title: provider.currentMovie.title ?? "",
+                images: provider.currentMovie.images ?? [],
+              ),
+            );
+          },
+          child: const Text("See Images"),
+        );
+      }),
+    );
+  }
+}
+
 class _SimilerSection extends StatelessWidget {
   const _SimilerSection();
 

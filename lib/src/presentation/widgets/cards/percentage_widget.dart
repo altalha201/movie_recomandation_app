@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class PercentageWidget extends StatefulWidget {
   final int percentage;
+  final Color? backgroundColor;
   const PercentageWidget({
     super.key,
     required this.percentage,
+    this.backgroundColor,
   });
 
   @override
@@ -55,7 +57,7 @@ class _PercentageWidgetState extends State<PercentageWidget>
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.black.withOpacity(0.7),
+        color: widget.backgroundColor ?? Colors.black.withOpacity(0.7),
       ),
       alignment: Alignment.center,
       child: AnimatedBuilder(
