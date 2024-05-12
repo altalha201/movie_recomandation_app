@@ -61,11 +61,19 @@ class SeriseRoomController extends ChangeNotifier {
   }
 
   bool emptyShow() {
-    if (_populer.isEmpty &&
-        _topRated.isEmpty &&
-        _onAir.isEmpty) {
+    if (_populer.isEmpty && _topRated.isEmpty && _onAir.isEmpty) {
       return true;
     }
     return false;
+  }
+
+  String getCurrentTraillerKey() {
+    var traillerVideo =
+        _currentPage.videos?.firstWhere((element) => element.type == "Trailer");
+
+    traillerVideo ??=
+        _currentPage.videos?.firstWhere((element) => element.type == 'Teaser');
+
+    return traillerVideo?.key ?? "";
   }
 }

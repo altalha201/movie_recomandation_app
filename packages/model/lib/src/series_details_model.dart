@@ -21,7 +21,7 @@ class SeriesDetailsModel {
   String? overview;
   List<GenreModel>? genres;
   List<String>? languages;
-  List<NetworkModel>? networks;
+  List<CompanyModel>? networks;
   List<CompanyModel>? productionCompanies;
   List<SeasonModel>? seasons;
   List<ImageModel>? images;
@@ -86,9 +86,9 @@ class SeriesDetailsModel {
     }
     languages = json['languages'].cast<String>();
     if (json['networks'] != null) {
-      networks = <NetworkModel>[];
+      networks = <CompanyModel>[];
       json['networks'].forEach((v) {
-        networks!.add(NetworkModel.fromJson(v));
+        networks!.add(CompanyModel.fromJson(v));
       });
     }
     if (json['production_companies'] != null) {

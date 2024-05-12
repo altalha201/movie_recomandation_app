@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_recomandation_app/src/presentation/screens/images_view_screen/images_view_screen.dart';
 import 'package:movie_show_utilites/movie_show_utilites.dart';
 import 'package:navigate/navigate.dart';
 import 'package:provider/provider.dart';
@@ -57,7 +56,7 @@ class _MovieView extends StatelessWidget {
         child: ListView(
           children: const [
             _TrailerSection(),
-            PosterandTitle(),
+            _PosterSection(),
             _Tags(),
             _MovieOverview(),
             MovieTableSection(),
@@ -71,31 +70,51 @@ class _MovieView extends StatelessWidget {
   }
 }
 
+class _PosterSection extends StatelessWidget {
+  const _PosterSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<MovieRoomController>(
+      builder: (context, provider, _) => PosterandTitle(
+        onFavourit: () {},
+        mediaName: provider.currentMovie.title,
+        tagline: provider.currentMovie.tagline,
+        mainPoster: provider.currentMovie.mainPoster,
+        votePercentage: provider.currentMovie.votePercentage,
+      ),
+    );
+  }
+}
+
 class _ImageSection extends StatelessWidget {
   const _ImageSection();
 
   @override
   Widget build(BuildContext context) {
+    var currentMovie = context.read<MovieRoomController>().currentMovie;
+    if (currentMovie.images?.isEmpty ?? true) {
+      return const SizedBox.shrink();
+    }
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Consumer<MovieRoomController>(builder: (context, provider, _) {
-        return ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
-          )),
-          onPressed: () {
-            Navigate.push(
-              context,
-              ImagesViewScreen(
-                title: provider.currentMovie.title ?? "",
-                images: provider.currentMovie.images ?? [],
-              ),
-            );
-          },
-          child: const Text("See Images"),
-        );
-      }),
+          ),
+        ),
+        onPressed: () {
+          Navigate.push(
+            context,
+            ImagesViewScreen(
+              title: currentMovie.title ?? "",
+              images: currentMovie.images ?? [],
+            ),
+          );
+        },
+        child: const Text("See Images"),
+      ),
     );
   }
 }
@@ -105,16 +124,16 @@ class _SimilerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MovieRoomController>(
-      builder: (context, provider, _) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: MediaListView(
-            medias: provider.currentMovie.similar ?? [],
-            title: "Similer",
-          ),
-        );
-      },
+    final list = context.read<MovieRoomController>().currentMovie.similar;
+    if (list?.isEmpty ?? true) {
+      return const SizedBox.shrink();
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: MediaListView(
+        medias: list ?? [],
+        title: "Similer",
+      ),
     );
   }
 }
@@ -124,16 +143,18 @@ class _RecommendationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MovieRoomController>(
-      builder: (context, provider, _) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: MediaListView(
-            medias: provider.currentMovie.recommendations ?? [],
-            title: "Recommended",
-          ),
-        );
-      },
+    final list =
+        context.read<MovieRoomController>().currentMovie.recommendations;
+    if (list?.isEmpty ?? true) {
+      return const SizedBox.shrink();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: MediaListView(
+        medias: list ?? [],
+        title: "Recommended",
+      ),
     );
   }
 }
@@ -186,7 +207,8 @@ class _Tags extends StatelessWidget {
             runSpacing: 8.0,
             spacing: 8.0,
             children: [
-              ...provider.getGeners().map((e) => TagWidget(text: e)),
+              ...CoreFunctions.getGeners(provider.currentMovie.genres)
+                  .map((e) => TagWidget(text: e)),
               TagWidget(
                 text: MSFunctions.convertMinutes(
                     provider.currentMovie.runtime ?? 0),
@@ -205,14 +227,14 @@ class _TrailerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var videos = context.read<MovieRoomController>().currentMovie.videos;
+    if (videos?.isEmpty ?? true) {
+      return const SizedBox.shrink();
+    }
     return FittedBox(
       fit: BoxFit.fill,
-      child: Consumer<MovieRoomController>(
-        builder: (context, provider, _) {
-          return VideoPlayer(
-            videoKey: provider.getCurrentTraillerKey(),
-          );
-        },
+      child: VideoPlayer(
+        videoKey: CoreFunctions.getTraillerKey(videos),
       ),
     );
   }

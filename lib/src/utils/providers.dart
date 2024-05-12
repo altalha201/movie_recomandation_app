@@ -30,48 +30,18 @@ class Providers {
   ];
 
   static Iterable<Future> onLoadUp(BuildContext context) => [
-        Provider.of<SeriseRoomController>(
-          context,
-          listen: false,
-        ).getAiringToday(),
-        Provider.of<MovieRoomController>(
-          context,
-          listen: false,
-        ).getNowPlaying(),
-        Provider.of<PersonRoomController>(
-          context,
-          listen: false,
-        ).getPopulerList(),
-        Provider.of<TrandingController>(
-          context,
-          listen: false,
-        ).getTrandings(),
+        context.read<SeriseRoomController>().getAiringToday(),
+        context.read<MovieRoomController>().getNowPlaying(),
+        context.read<PersonRoomController>().getPopulerList(),
+        context.read<TrandingController>().getTrandings(),
       ];
 
   static Iterable<Future> onShow(BuildContext context) => [
-        Provider.of<MovieRoomController>(
-          context,
-          listen: false,
-        ).getPopular(),
-        Provider.of<MovieRoomController>(
-          context,
-          listen: false,
-        ).getTopRated(),
-        Provider.of<MovieRoomController>(
-          context,
-          listen: false,
-        ).getUpcoming(),
-        Provider.of<SeriseRoomController>(
-          context,
-          listen: false,
-        ).getOnTheAir(),
-        Provider.of<SeriseRoomController>(
-          context,
-          listen: false,
-        ).getPopular(),
-        Provider.of<SeriseRoomController>(
-          context,
-          listen: false,
-        ).getTopRated(),
+        context.read<MovieRoomController>().getPopular(),
+        context.read<MovieRoomController>().getTopRated(),
+        context.read<MovieRoomController>().getUpcoming(),
+        context.read<SeriseRoomController>().getOnTheAir(),
+        context.read<SeriseRoomController>().getPopular(),
+        context.read<SeriseRoomController>().getTopRated(),
       ];
 }

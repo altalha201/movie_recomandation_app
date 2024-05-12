@@ -51,7 +51,8 @@ class MovieTableSection extends StatelessWidget {
       rows.add(
         TableRowModel(
           title: "Production Companies",
-          data: provider.getCurrentProductionCompanies(),
+          data: CoreFunctions.getCompanies(
+              provider.currentMovie.productionCompanies),
         ),
       );
     }

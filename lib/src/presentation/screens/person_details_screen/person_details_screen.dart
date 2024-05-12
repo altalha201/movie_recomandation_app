@@ -69,9 +69,21 @@ class _PersonDetailsView extends StatelessWidget {
         Divider(
           color: MSColors.dividerGrey,
         ),
-        TitleWidget("Known For"),
-        CastIn(),
+        _KnownForSection(),
       ],
+    );
+  }
+}
+
+class _KnownForSection extends StatelessWidget {
+  const _KnownForSection();
+
+  @override
+  Widget build(BuildContext context) {
+    var list = context.read<PersonRoomController>().currentPage.knownFor;
+    return MediaListView(
+      medias: list ?? [],
+      title: "Known For",
     );
   }
 }

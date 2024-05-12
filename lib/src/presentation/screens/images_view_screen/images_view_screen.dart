@@ -72,31 +72,49 @@ class _ImagesViewScreenState extends State<ImagesViewScreen> {
           ),
           child: ListView.builder(
             controller: _scrollController,
-            itemCount: _loadedImages.length + 1,
+            itemCount: _loadedImages.length,
             itemBuilder: (context, index) {
-              if (index >= _loadedImages.length) {
-                return const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: AppProgressIndicator(),
-                );
+              var current = _loadedImages[index];
+              var filePath = current.filePath;
+              var imageUrl = filePath != null
+                  ? EndPoints.getImageUrl(filePath)
+                  : EndPoints.noPosterUrl;
+              if (filePath?.split(".").last case "png" || "jpeg" || "jpg") {
+                return _ImageBuilder(imageUrl: imageUrl);
               } else {
-                var current = _loadedImages[index];
-                var filePath = current.filePath;
-                var imageUrl = filePath != null
-                    ? EndPoints.getImageUrl(filePath)
-                    : EndPoints.noPosterUrl;
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(imageUrl),
-                  ),
-                );
+                return const SizedBox.shrink();
               }
             },
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ImageBuilder extends StatelessWidget {
+  const _ImageBuilder({
+    required this.imageUrl,
+  });
+
+  final String imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 8,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.network(
+          imageUrl,
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) {
+              return child;
+            }
+            return const AppProgressIndicator();
+          },
         ),
       ),
     );

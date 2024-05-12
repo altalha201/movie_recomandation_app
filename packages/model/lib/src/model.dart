@@ -6,7 +6,6 @@ export 'image_model.dart';
 export 'media_model.dart';
 export 'movie_details_model.dart';
 export 'movie_model.dart';
-export 'network_model.dart';
 export 'person_details_model.dart';
 export 'person_model.dart';
 export 'response_model.dart';
