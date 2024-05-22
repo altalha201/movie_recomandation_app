@@ -7,14 +7,18 @@ import 'package:model/model.dart';
 class ApiServices {
   const ApiServices();
   static final Map<String, String> _header = {
-    "accept": "application/json",
+    "Content-Type": "application/json",
   };
 
   static Future<ResponseModel> getRequest(
     String url, {
     Map<String, dynamic>? params,
+    Map<String, String>? headers,
   }) async {
     try {
+      if (headers != null) {
+        _header.addAll(headers);
+      }
       final res = await http.get(
         Uri.parse(url).replace(queryParameters: params),
         headers: _header,
@@ -29,6 +33,7 @@ class ApiServices {
         return ResponseModel(
           statusCode: res.statusCode,
           success: false,
+          body: json.decode(res.body),
         );
       }
     } catch (e) {
@@ -36,6 +41,7 @@ class ApiServices {
       return ResponseModel(
         statusCode: 401,
         success: false,
+        body: {"message": e.toString()},
       );
     }
   }
@@ -46,10 +52,12 @@ class ApiServices {
     Map<String, dynamic>? body,
   }) async {
     try {
+      log(body.toString());
+
       final res = await http.post(
         Uri.parse(url).replace(queryParameters: params),
         headers: _header,
-        body: body,
+        body: jsonEncode(body),
       );
       if (res.statusCode == 200 || res.statusCode == 201) {
         return ResponseModel(
@@ -58,9 +66,11 @@ class ApiServices {
           body: json.decode(res.body),
         );
       } else {
+        log(res.body);
         return ResponseModel(
           statusCode: res.statusCode,
           success: false,
+          body: json.decode(res.body),
         );
       }
     } catch (e) {
@@ -68,6 +78,7 @@ class ApiServices {
       return ResponseModel(
         statusCode: 401,
         success: false,
+        body: {"message": e.toString()},
       );
     }
   }

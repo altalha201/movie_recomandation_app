@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_recomandation_app/src/controllers/data_controller/profile_data_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -6,6 +7,9 @@ import 'exports.dart';
 
 class Providers {
   static List<SingleChildWidget> all = [
+    ChangeNotifierProvider<AuthController>(
+      create: (_) => AuthController(),
+    ),
     ChangeNotifierProvider<TrandingController>(
       create: (_) => TrandingController(),
     ),
@@ -23,6 +27,9 @@ class Providers {
     ),
     ChangeNotifierProvider<PersonRoomController>(
       create: (_) => PersonRoomController(),
+    ),
+    ChangeNotifierProvider<ProfileDataController>(
+      create: (_) => ProfileDataController(),
     ),
     ChangeNotifierProvider<NavbarController>(
       create: (_) => NavbarController(),

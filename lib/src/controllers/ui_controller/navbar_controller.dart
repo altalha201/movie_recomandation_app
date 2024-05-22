@@ -10,7 +10,7 @@ class NavbarController extends ChangeNotifier{
     const HomeTab(),
     const ShowTab(),
     const SearchTab(),
-    const Center(child: Text("Acount Section", style: TextStyle(color: Colors.white),)),
+    const AccountTab(),
   ];
 
   int get currentTabIndex => _currentTabIndex;

@@ -2,47 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:movie_show_api/movie_show_api.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class VideoPlayer extends StatefulWidget {
+class VideoPlayer extends StatelessWidget {
   final String videoKey;
-  const VideoPlayer({super.key, required this.videoKey});
-
-  @override
-  State<VideoPlayer> createState() => _VideoPlayerState();
-}
-
-class _VideoPlayerState extends State<VideoPlayer> {
-  late YoutubePlayerController _controller;
-
-  @override
-  void initState() {
-    final videoId = YoutubePlayer.convertUrlToId(widget.videoKey);
-    _controller = YoutubePlayerController(
-      initialVideoId: videoId.toString(),
-      flags: const YoutubePlayerFlags(
-        enableCaption: true,
-        autoPlay: false,
-        mute: false,
-        forceHD: true,
-      ),
-    );
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  final YoutubePlayerController controller;
+  const VideoPlayer({
+    super.key,
+    required this.videoKey,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
-    if (widget.videoKey == "") {
+    if (videoKey == "") {
       return const SizedBox.shrink();
     }
     return Padding(
       padding: EdgeInsets.zero,
       child: YoutubePlayer(
-        controller: _controller,
+        controller: controller,
         controlsTimeOut: const Duration(microseconds: 1500),
         aspectRatio: 16 / 9,
         showVideoProgressIndicator: true,
@@ -55,7 +32,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
           ),
         ),
         thumbnail: Image.network(
-          EndPoints.youtubeThumnail(widget.videoKey),
+          EndPoints.youtubeThumnail(videoKey),
           fit: BoxFit.cover,
         ),
         bottomActions: [

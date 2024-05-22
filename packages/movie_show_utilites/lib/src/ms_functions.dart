@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:intl/intl.dart';
 
 class MSFunctions {
@@ -62,5 +64,11 @@ class MSFunctions {
     }
 
     return result;
+  }
+
+  static int genarateProfile({bool female = false}) {
+    int genarated = Random().nextInt(50);
+
+    return female ? genarated + 51 : genarated + 1;
   }
 }

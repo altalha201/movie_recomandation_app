@@ -3,8 +3,10 @@ export 'core_functions.dart';
 export 'providers.dart';
 
 // Controllers
+export '../controllers/data_controller/auth_controller.dart';
 export '../controllers/data_controller/movie_room_controller.dart';
 export '../controllers/data_controller/person_room_controller.dart';
+export '../controllers/data_controller/profile_data_controller.dart';
 export '../controllers/data_controller/search_function_controller.dart';
 export '../controllers/data_controller/serise_room_controller.dart';
 export '../controllers/data_controller/tranding_controllers.dart';
@@ -15,6 +17,7 @@ export '../controllers/ui_controller/navbar_controller.dart';
 // Presentation/Screens
 export '../presentation/screens/bottom_navbar_screen/bottom_navbar_screen.dart';
 export '../presentation/screens/bottom_navbar_screen/tabs/account_tab/account_tab.dart';
+export '../presentation/screens/bottom_navbar_screen/tabs/account_tab/view/profile_view.dart';
 export '../presentation/screens/bottom_navbar_screen/tabs/home_tab/home_tab.dart';
 export '../presentation/screens/bottom_navbar_screen/tabs/search_tab/search_tab.dart';
 export '../presentation/screens/bottom_navbar_screen/tabs/show_tab/show_tab.dart';
@@ -48,6 +51,7 @@ export '../presentation/screens/splash_screen/splash_screen.dart';
 export '../presentation/widgets/app_progress_indicator.dart';
 export '../presentation/widgets/background.dart';
 export '../presentation/widgets/home_screen_title_widget.dart';
+export '../presentation/widgets/ms_text_field.dart';
 export '../presentation/widgets/poster_and_title.dart';
 export '../presentation/widgets/title_widget.dart';
 export '../presentation/widgets/video_player.dart';
@@ -77,8 +81,11 @@ export '../presentation/widgets/tags/audult_tag.dart';
 export '../presentation/widgets/tags/tag_widget.dart';
 
 // Repositorry
+export '../repository/auth_repository.dart';
+export '../repository/local_repository.dart';
 export '../repository/movie_repository.dart';
 export '../repository/people_repository.dart';
+export '../repository/profile_repository.dart';
 export '../repository/search_repository.dart';
 export '../repository/serise_repository.dart';
 export '../repository/tranding_repository.dart';

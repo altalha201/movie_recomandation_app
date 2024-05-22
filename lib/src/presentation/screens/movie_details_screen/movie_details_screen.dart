@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_show_utilites/movie_show_utilites.dart';
 import 'package:navigate/navigate.dart';
 import 'package:provider/provider.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../utils/exports.dart';
 
@@ -14,17 +15,42 @@ class MovieDetailsScreen extends StatefulWidget {
 }
 
 class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
+  YoutubePlayerController _controller = YoutubePlayerController(initialVideoId: "");
+  String _videoKey = "";
+  bool _showVideo = true;
   @override
   void initState() {
+    super.initState();
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback(
       (timeStamp) async {
-        await Provider.of<MovieRoomController>(
-          context,
-          listen: false,
-        ).getInfo(widget.id);
+        await context.read<MovieRoomController>().getInfo(widget.id);
+        if (mounted) {
+          final current = context.read<MovieRoomController>().currentMovie;
+          if (!(current.isNull ?? true)) {
+            _videoKey = CoreFunctions.getTraillerKey(current.videos);
+            if (current.videos?.isEmpty ?? true) {
+              _showVideo = false;
+            }
+            final videoId = YoutubePlayer.convertUrlToId(_videoKey);
+            _controller = YoutubePlayerController(
+              initialVideoId: videoId.toString(),
+              flags: const YoutubePlayerFlags(
+                enableCaption: true,
+                autoPlay: false,
+                mute: false,
+                forceHD: true,
+              ),
+            );
+          }
+        }
       },
     );
-    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -38,7 +64,11 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
             if (provider.currentMovie.isNull ?? false) {
               return const ErrorScreen();
             }
-            return const _MovieView();
+            return _MovieView(
+              _controller,
+              _videoKey,
+              _showVideo,
+            );
           }
         },
       ),
@@ -47,22 +77,33 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
 }
 
 class _MovieView extends StatelessWidget {
-  const _MovieView();
+  final YoutubePlayerController controller;
+  final String videoKey;
+  final bool showVideoSection;
+  const _MovieView(
+    this.controller,
+    this.videoKey,
+    this.showVideoSection,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          children: const [
-            _TrailerSection(),
-            _PosterSection(),
-            _Tags(),
-            _MovieOverview(),
-            MovieTableSection(),
-            _ImageSection(),
-            _SimilerSection(),
-            _RecommendationSection(),
+          children: [
+            _TrailerSection(
+              controller,
+              videoKey,
+              showVideoSection,
+            ),
+            const _PosterSection(),
+            const _Tags(),
+            const _MovieOverview(),
+            const MovieTableSection(),
+            const _ImageSection(),
+            const _SimilerSection(),
+            const _RecommendationSection(),
           ],
         ),
       ),
@@ -99,11 +140,6 @@ class _ImageSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
         onPressed: () {
           Navigate.push(
             context,
@@ -223,19 +259,23 @@ class _Tags extends StatelessWidget {
 }
 
 class _TrailerSection extends StatelessWidget {
-  const _TrailerSection();
+  final YoutubePlayerController controller;
+  final String videoKey;
+  final bool hasVideo;
+  const _TrailerSection(
+    this.controller,
+    this.videoKey,
+    this.hasVideo,
+  );
 
   @override
   Widget build(BuildContext context) {
-    var videos = context.read<MovieRoomController>().currentMovie.videos;
-    if (videos?.isEmpty ?? true) {
+    if (!hasVideo) {
       return const SizedBox.shrink();
     }
-    return FittedBox(
-      fit: BoxFit.fill,
-      child: VideoPlayer(
-        videoKey: CoreFunctions.getTraillerKey(videos),
-      ),
+    return VideoPlayer(
+      videoKey: videoKey,
+      controller: controller,
     );
   }
 }

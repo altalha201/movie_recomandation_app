@@ -8,6 +8,7 @@ export 'movie_details_model.dart';
 export 'movie_model.dart';
 export 'person_details_model.dart';
 export 'person_model.dart';
+export 'profile_model.dart';
 export 'response_model.dart';
 export 'search_model.dart';
 export 'season_model.dart';

@@ -27,6 +27,7 @@ dependencies:
     path: packages/navigate
   youtube_player_flutter: ^9.0.1
   collection: ^1.18.0
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:

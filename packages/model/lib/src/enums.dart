@@ -46,3 +46,21 @@ enum MediaType {
     }
   }
 }
+
+enum GenderType {
+  male,
+  female;
+
+  String get string => toString().split(".").last;
+  
+  static GenderType? fromString(String gender) {
+    switch (gender) {
+      case "male":
+        return GenderType.male;
+      case "female":
+        return GenderType.female;
+      default:
+        return null;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 class PersonModel {
   bool? adult;
-  int? gender;
+  String? gender;
   int? id;
   String? knownForDepartment;
   String? name;
