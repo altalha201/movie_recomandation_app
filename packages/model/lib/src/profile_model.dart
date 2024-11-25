@@ -7,6 +7,11 @@ class ProfileModel {
   String? createdAt;
   String? updatedAt;
   bool? isNull;
+  List<int>? favouriteMovies;
+  List<int>? favouriteTvSerises;
+  List<int>? favouritePersonalitys;
+  List<int>? movieWatchList;
+  List<int>? tvWatchList;
 
   ProfileModel({
     this.sId,
@@ -17,6 +22,11 @@ class ProfileModel {
     this.createdAt,
     this.updatedAt,
     this.isNull = false,
+    this.favouriteMovies,
+    this.favouritePersonalitys,
+    this.favouriteTvSerises,
+    this.movieWatchList,
+    this.tvWatchList,
   });
 
   ProfileModel.fromJson(Map<String, dynamic> json) {
@@ -27,6 +37,11 @@ class ProfileModel {
     profileImgId = json['profileImgId'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
+    favouriteMovies = json['favouriteMovies'];
+    favouritePersonalitys = json['favouritePersonalitys'];
+    favouriteTvSerises = json['favouriteTvSerises'];
+    movieWatchList = json['movieWatchList'];
+    tvWatchList = json['tvWatchList'];
     isNull = false;
   }
 
@@ -39,6 +54,11 @@ class ProfileModel {
     data['profileImgId'] = profileImgId;
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;
+    data['favouriteMovies'] = favouriteMovies;
+    data['favouritePersonalitys'] = favouritePersonalitys;
+    data['favouriteTvSerises'] = favouriteTvSerises;
+    data['movieWatchList'] = movieWatchList;
+    data['tvWatchList'] = tvWatchList;
     return data;
   }
 }

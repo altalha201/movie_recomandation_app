@@ -38,6 +38,7 @@ class ProfileRepositort {
     final response = await ApiServices.postRequest(
       EndPoints.profileUpdate,
       body: updateBody,
+      headers: {'token' : token}
     );
 
     if (response.success) {
@@ -52,6 +53,7 @@ class ProfileRepositort {
     final response = await ApiServices.postRequest(
       EndPoints.profileDelete,
       body: body,
+      headers: {'token' : token}
     );
 
     return response.success;

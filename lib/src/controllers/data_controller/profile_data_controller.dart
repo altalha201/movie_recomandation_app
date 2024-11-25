@@ -39,4 +39,30 @@ class ProfileDataController extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  bool isAtList(MediaType mediaType, int id, {bool isWatchList = false}) {
+    if (isWatchList) {
+      switch (mediaType) {
+        case MediaType.movie:
+          return _currentUser.movieWatchList?.contains(id) ?? false;
+        case MediaType.tv:
+          return _currentUser.tvWatchList?.contains(id) ?? false;
+        case MediaType.person:
+          return false;
+        case MediaType.none:
+          return false;
+      }
+    } else {
+      switch (mediaType) {
+        case MediaType.movie:
+          return _currentUser.favouriteMovies?.contains(id) ?? false;
+        case MediaType.tv:
+          return _currentUser.favouriteTvSerises?.contains(id) ?? false;
+        case MediaType.person:
+          return _currentUser.favouritePersonalitys?.contains(id) ?? false;
+        case MediaType.none:
+          return false;
+      }
+    }
+  }
 }

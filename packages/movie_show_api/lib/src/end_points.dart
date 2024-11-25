@@ -29,4 +29,8 @@ class EndPoints {
   static String profile = "$_baseUrl/user/";
   static String profileUpdate = "$_baseUrl/user/update";
   static String profileDelete = "$_baseUrl/user/delete";
+
+  static String addToFavourite(String mediaType, int id) => "$_baseUrl/favourite/add/$mediaType/$id";
+  static String removeFromFavourite(String mediaType, int id) => "$_baseUrl/favourite/delete/$mediaType/$id";
+  static String getFavouriteList(String mediaType) => "$_baseUrl/favourite/delete/$mediaType";
 }

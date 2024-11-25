@@ -16,12 +16,10 @@ class ApiServices {
     Map<String, String>? headers,
   }) async {
     try {
-      if (headers != null) {
-        _header.addAll(headers);
-      }
+      headers?.addAll(_header);
       final res = await http.get(
         Uri.parse(url).replace(queryParameters: params),
-        headers: _header,
+        headers: headers,
       );
       if (res.statusCode == 200) {
         return ResponseModel(
@@ -49,14 +47,14 @@ class ApiServices {
   static Future<ResponseModel> postRequest(
     String url, {
     Map<String, dynamic>? params,
+    Map<String, String>? headers,
     Map<String, dynamic>? body,
   }) async {
     try {
-      log(body.toString());
-
+      headers?.addAll(_header);
       final res = await http.post(
         Uri.parse(url).replace(queryParameters: params),
-        headers: _header,
+        headers: headers,
         body: jsonEncode(body),
       );
       if (res.statusCode == 200 || res.statusCode == 201) {

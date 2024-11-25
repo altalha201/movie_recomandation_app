@@ -82,6 +82,7 @@ export '../presentation/widgets/tags/tag_widget.dart';
 
 // Repositorry
 export '../repository/auth_repository.dart';
+export '../repository/favourite_repository.dart';
 export '../repository/local_repository.dart';
 export '../repository/movie_repository.dart';
 export '../repository/people_repository.dart';

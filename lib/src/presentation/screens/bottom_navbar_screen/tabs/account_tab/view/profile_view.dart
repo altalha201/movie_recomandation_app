@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_recomandation_app/src/controllers/data_controller/profile_data_controller.dart';
 import 'package:movie_recomandation_app/src/utils/exports.dart';
 import 'package:movie_show_api/movie_show_api.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +13,7 @@ class ProfileView extends StatelessWidget {
         child: ListView(
           children: const [
             _ProfileDetailsSection(),
+            Divider(),
           ],
         ),
       ),
@@ -31,18 +31,36 @@ class _ProfileDetailsSection extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            CircleAvatar(
-              radius: 56,
-              backgroundColor: Colors.amber,
-              child: CircleAvatar(
-                radius: 52,
-                backgroundImage: NetworkImage(
-                  EndPoints.getProfileImage(
-                    provider.userProfile.profileImgId ?? 1,
+            Stack(
+              children: [
+                CircleAvatar(
+                  radius: 56,
+                  backgroundColor: Colors.amber,
+                  child: CircleAvatar(
+                    radius: 52,
+                    backgroundImage: NetworkImage(
+                      EndPoints.getProfileImage(
+                        provider.userProfile.profileImgId ?? 1,
+                      ),
+                    ),
+                    backgroundColor: Colors.amber,
                   ),
                 ),
-                backgroundColor: Colors.amber,
-              ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: InkWell(
+                    onTap: () async {
+                      await provider.updateUserProfileImage();
+                    },
+                    child: const CircleAvatar(
+                      radius: 18,
+                      backgroundColor: Colors.amber,
+                      child: Icon(Icons.refresh),
+                    ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(width: 16),
             Expanded(

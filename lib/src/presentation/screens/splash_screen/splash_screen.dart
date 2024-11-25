@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_recomandation_app/src/controllers/data_controller/profile_data_controller.dart';
 import 'package:navigate/navigate.dart';
 import 'package:provider/provider.dart';
 
